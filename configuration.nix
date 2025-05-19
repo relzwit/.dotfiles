@@ -29,10 +29,10 @@
 #    locker = "${pkgs.slock}/bin.slock";
 #  };
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 33 * 1024; # 33GB
-  }];
+#  swapDevices = [{
+#    device = "/swapfile";
+#    size = 33 * 1024; # 33GB
+#  }];
 
 
   xdg.portal.enable = true;
