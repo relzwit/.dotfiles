@@ -29,7 +29,6 @@
 #    locker = "${pkgs.slock}/bin.slock";
 #  };
 
-  
   swapDevices = [{
     device = "/swapfile";
     size = 33 * 1024; # 33GB
@@ -186,7 +185,7 @@
     # basics
     neovim
     wget
-    git
+    git 
     inputs.helix.packages."${pkgs.system}".helix
 
     # messaging stuffs
