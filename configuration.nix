@@ -29,11 +29,9 @@
 #    locker = "${pkgs.slock}/bin.slock";
 #  };
 
-#  swapDevices = [{
-#    device = "/swapfile";
-#    size = 33 * 1024; # 33GB
-#  }];
-
+  # Stuff for mullvad VPN to function
+  services.mullvad-vpn.enable = true;
+  services.resolved.enable = true;
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -166,7 +164,7 @@
 
   services.redshift = {
     enable = true;
-  };
+  }; 
 
   services.greetd = {
     enable = true;
@@ -185,7 +183,10 @@
     # basics
     neovim
     wget
-    git 
+    bash
+    curl
+    git
+    gnugrep
     inputs.helix.packages."${pkgs.system}".helix
 
     # messaging stuffs
@@ -214,12 +215,21 @@
 
 # utilities and ricing
     nitch #neofetch alt, necessary asf...fite me
+    yt-dlp
+    libsForQt5.okular # PDF viewer
     
+    #can probs remove this (test later)
+    weather
+
+    mullvad
+
     #waybar shit
     waybar #baaaarrrrrrr
     hyprpicker
-    bluez
-    #swaynotificationcenter
+    
+    #waybar network stuff
+    networkmanager
+    networkmanagerapplet #magical goodness tysm maintainer
 
     swww #wallpapers
     dunst #notification manager
@@ -237,6 +247,12 @@
     powertop
 #    physlock
     xautolock
+    
+    # alll used for the wifi menu
+    xmlstarlet
+    gtk-layer-shell
+    gtk3
+    dmenu
 
     #polkit
     #libsForQt5.polkit-kde-agent
@@ -252,25 +268,6 @@
 
 
   security.polkit.enable = true;
-
- # systemd = {
-    #user.services.polkit-gnome-authentication-agent-1 = {
-      #description = "polkit-gnome-authentication-agent-1";
-     # wantedBy = [ "graphical-session.target" ];
-    #  wants = [ "graphical-session.target" ];
-   #   after = [ "graphical-session.target" ];
-  #    serviceConfig = {
- #       Type = "simple";
-#	ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-#	Restart = "on-failure";
-#	RestartSec = 1;
-#	TimeoutStopSec = 10;
-    #  };
-   # };
-  #   extraConfig = ''
- #      DefaultTimeoutStopSec=10s
-   #  '';
-  #};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

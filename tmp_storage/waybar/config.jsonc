@@ -2,9 +2,9 @@
         "layer": "top",
         "position": "top",
         "reload_style_on_change": true,
-        "modules-left": ["custom/power","clock","tray"],
+        "modules-left": ["clock","custom/mullvad","tray"],
         "modules-center": ["hyprland/workspaces"],
-        "modules-right": ["group/expand","network","battery"],
+        "modules-right": ["group/expand","custom/weather","battery","custom/power"],
 
 
         "hyprland/workspaces": {
@@ -21,11 +21,23 @@
                "8": "八",
                "9": "九",
                "10": "〇"
-
 	    }
-        },
+	},
+
+        "custom/mullvad": {
+        	"exec": "~/.config/waybar/scripts/mullvad/mullvad.sh",
+        	"interval": 10,
+        	"return-type": "json",
+        	"signal": 1,
+        	"on-click": "bash -c 'mullvad connect && notify-send -a \"Mullvad VPN\" \"Connecting...\" \"Attempting to establish VPN connection\" -t 2000'",
+        	"on-click-right": "bash -c 'mullvad disconnect && notify-send -a \"Mullvad VPN\" \"Disconnecting...\" \"Shutting down VPN connection\" -t 2000'",
+        	"on-click-middle": "kitty --title 'Mullvad Location Selector' ~/.config/waybar/scripts/mullvad/mullvad-location-selector.sh",
+        	"tooltip": true,
+        	"escape": true
+	},
+	
 	"custom/power": {
-	"format" : "",
+		"format" : "",
 		"tooltip": false,
 		"menu": "on-click",
 		"menu-file": "~/.config/waybar/power_menu.xml",
@@ -38,11 +50,12 @@
         },
         "clock": {
             "format": "{:%I:%M %p} ",
-            "interval": 1,   
+	    "format-alt": "{:%A, %B %d, %Y (%R)}",
+            "interval": 30,   
             "tooltip-format": "<tt>{calendar}</tt>",
             "calendar": {
                 "format": {
-                    "today": "<span color='#fAfBfC'><b>{}</b></span>"
+                    "today": "<span color='red'><b>{}</b></span>"
                 }
             },
             "actions": {
@@ -50,7 +63,8 @@
                 "on-click": "shift_up"
             }
         },
-        "network": {
+
+       /* "network": {
             "format-wifi": " ",
             "format-ethernet":"",
             "format-disconnected": "",
@@ -60,7 +74,7 @@
             "on-click": "kitty nmtui",
 	    "on-click-right": "nm-connection-editor",
 	    "interval": 1
-        }, 
+        },*/
         "battery": {
             "interval":30,
             "states": {
@@ -95,7 +109,7 @@
                 "transition-to-left": true,
                 "click-to-reveal": true
             },
-            "modules": ["custom/expand","custom/weather","custom/blueLight","cpu","memory","custom/endpoint"]
+            "modules": ["custom/expand","custom/blueLight","cpu","memory","custom/endpoint"]
         },
         "cpu": {
             "format": "",
@@ -105,15 +119,27 @@
             "format": ""
         },
 	"custom/weather": {
-            "format": "  "
-	    //implement a weather check module that opens a terminal that displays the weather
+		"format": "{}  ",
+		"exec": "~/.config/waybar/scripts/weather.sh",
+		"on-click": "~/.config/waybar/scripts/weather.sh --popup",
+		"interval": 1800,
+		"return-type": "json"
 	},
+
 	"custom/blueLight": {
 		"format": "  "
 	},
         "tray": {
             "icon-size": 14,
-            "spacing": 5
+            "spacing": 5,
+	    "exclude": ["nm-applet"]
         }
+/*"custom/rofi-wifi": { // basic module for if the tray icon ever goes away
+  "format": "",
+  "tooltip": "Manage Wi-Fi",
+  "exec": "echo ",
+  "on-click": "~/.config/waybar/scripts/rofi-wifi.sh"
+}*/
+
 } 
 

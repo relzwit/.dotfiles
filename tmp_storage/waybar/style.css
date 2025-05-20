@@ -34,7 +34,8 @@ tooltip {
 }
 #clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover,#weather:hover{
     transition: all .3s ease;
-    color:@color9;
+    /*color:@color9;*/
+    color:red;
 }
 #custom-notification {
     padding: 0px 5px;
@@ -87,14 +88,8 @@ tooltip {
     padding: 0px 5px;
     transition: all .3s ease;
     color:@color7;
-
 }
-#network{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
-}
 #battery{
     padding: 0px 5px;
     transition: all .3s ease;
@@ -149,5 +144,29 @@ tooltip {
 #custom-blueLight{
     color:blue;
 }
+#custom-mullvad {
+    padding: 0 10px;
+    border-radius: 5px;
+    margin: 2px 4px;
+}
 
+#custom-mullvad.connected {
+    color: #a3be8c;
+    background-color: rgba(163, 190, 140, 0.2);
+}
+
+#custom-mullvad.disconnected {
+    color: #bf616a;
+    background-color: rgba(191, 97, 106, 0.2);
+}
+
+#custom-mullvad.error {
+    color: #d08770;
+    background-color: rgba(208, 135, 112, 0.2);
+}
+
+#custom-rofi-wifi {
+  color: #a3be8c;
+  padding: 0 10px;
+}
 
