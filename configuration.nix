@@ -170,7 +170,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         user = "greeter";
       };
     };
@@ -236,7 +236,6 @@
     libnotify #dunst dependency
     btop #hardware monitor
     rofi-wayland #app launcher
-    gnome-disk-utility 
     kitty #terminal emulator
     font-awesome
     brightnessctl
@@ -248,12 +247,6 @@
 #    physlock
     xautolock
     
-    # alll used for the wifi menu
-    xmlstarlet
-    gtk-layer-shell
-    gtk3
-    dmenu
-
     #polkit
     #libsForQt5.polkit-kde-agent
    # pkgs.polkit
