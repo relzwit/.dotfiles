@@ -8,34 +8,43 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+#      ./programs/firefox.nix
     ];
   # enabling hyprland
   programs.hyprland.enable = true;
 
-  stylix.enable = true;
 
-  #stylix.image = /home/relz/Documents/wallpapers/catgirl.jpg;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/3024.yaml";
-
-#  physlock = {
-#    allowAnyUser = true;
-#    enable = true;
-#  };
-
-#  services.xserver.displayManager.sddm.enable = true;
-#  programs.xss-lock.enable = true;
-#  services.xautolock = {
-#    enable = true;
-#    locker = "${pkgs.slock}/bin.slock";
-#  };
+############
+##Services##
+############
 
   # Stuff for mullvad VPN to function
   services.mullvad-vpn.enable = true;
   services.resolved.enable = true;
 
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true; 
+
+  # power management shit
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+  services.power-profiles-daemon.enable = false;
+
+
+
+
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  #probably required for steam i think it was
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1v"
     "python2.7.18.6"
@@ -81,26 +90,13 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true; 
-
-  # power management shit
-  services.thermald.enable = true;
-  services.tlp.enable = true;
-  services.power-profiles-daemon.enable = false;
 
 #old---:
   # Enable sound with pipewire.
@@ -188,6 +184,7 @@
     git
     gnugrep
     inputs.helix.packages."${pkgs.system}".helix
+    
 
     # messaging stuffs
     telegram-desktop
@@ -207,6 +204,7 @@
     mpv
     obs-studio
     prismlauncher
+    gparted
 
     #programming
     vscode
@@ -218,15 +216,12 @@
     yt-dlp
     libsForQt5.okular # PDF viewer
     
-    #can probs remove this (test later)
-    weather
-
     mullvad
 
     #waybar shit
     waybar #baaaarrrrrrr
-    hyprpicker
-    
+    hyprpaper
+
     #waybar network stuff
     networkmanager
     networkmanagerapplet #magical goodness tysm maintainer
@@ -244,13 +239,8 @@
     grim
     slurp
     powertop
-#    physlock
     xautolock
-    
-    #polkit
-    #libsForQt5.polkit-kde-agent
-   # pkgs.polkit
-   # pkgs.polkit_gnome
+    pywal
   ];
 
   programs.steam = {
