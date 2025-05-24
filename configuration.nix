@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-#      ./programs/firefox.nix
+      ./programs/firefox/firefox.nix
     ];
   # enabling hyprland
   programs.hyprland.enable = true;
@@ -142,7 +142,7 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -183,7 +183,6 @@
     curl
     git
     gnugrep
-    inputs.helix.packages."${pkgs.system}".helix
     
 
     # messaging stuffs
