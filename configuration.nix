@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       #./programs/stylix/stylix.nix
       ./programs/gammastep/gammastep.nix
+      #./programs/nixvim/nixvim.nix
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
     ];

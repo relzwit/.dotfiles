@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    #nixvim.url = "github:nix-community/nixvim/nixos-24.11";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: {
