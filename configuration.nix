@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
+      ./programs/greetd/greetd.nix
       ./programs/firefox/firefox.nix
     ];
   # enabling hyprland
@@ -48,15 +49,15 @@
     enable = true;
   }; 
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        user = "greeter";
-      };
-    };
-  };
+#  services.greetd = {
+#    enable = true;
+#    settings = {
+#      default_session = {
+#        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+#        user = "greeter";
+#      };
+#    };
+#  };
 
   # music player daemon
   services.mpd = {
