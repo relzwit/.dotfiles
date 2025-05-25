@@ -1,119 +1,96 @@
-#root {
-  --tabs-font: 10pt Segoe UI;
-  --tabs-count-font: .625rem Segoe UI;
-  --bookmarks-bookmark-font: .875rem Segoe UI;
-  --bookmarks-folder-font: 10pt Segoe UI;
+/* Hide the sidebar header */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
+  visibility: collapse !important;
 }
- 
-/* Adjust styles according to sidebar width */
-@media screen and (max-width: 49px) {
-  #root {
-    --tabs-indent: unset;
-  }
-  .ScrollBox > .scroll-container {
-    overflow: hidden;
-  }
-  .Tab .audio {
-    left: 10px;
-    transform: scale(.80);
-    transform: translateY(4px);
-    z-index: 99 !important;
-  }
-  .Tab .title {
-    visibility: collapse;
-  }
+
+/* Sidebar and header background and border */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar,
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar-header {
+  background-color: var(--toolbar-bgcolor) !important;
+  border-inline: 1px solid var(--chrome-content-separator-color) !important;
+  border-inline-width: 0px 1px;
 }
- 
-@media screen and (min-width: 49px) {
-  .Tab .audio {
-    left: 28px;
-  }
+
+/* RTL support */
+#sidebar-box[positionend] {
+  direction: rtl;
 }
- 
-/*
- * Add margins and rounding around tabs
- */ 
- 
-#root {
-  --tabs-height: 43px;
+#sidebar-box[positionend] > * {
+  direction: ltr;
 }
- 
-/* Background layer */
- 
-.Tab {
-  margin: 0 4px;
-  width: unset;
+#sidebar-box[positionend]:-moz-locale-dir(rtl) {
+  direction: ltr;
 }
-.Tab .lvl-wrapper:after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  width: 100%;
-  height: calc(100% - 5px);
-  border-radius: 4px;
-  z-index: -1;
+#sidebar-box[positionend]:-moz-locale-dir(rtl) > * {
+  direction: rtl;
 }
- 
-@media (prefers-color-scheme:light) {
-  #root {
-    --tabs-activated-bg: white !important;
-    --tabs-bg-active: var(--tabs-activated-bg) !important;
-    --tabs-selected-fg: var(--tabs-activated-fg) !important;
-    --tabs-selected-bg: var(--tabs-activated-bg) !important;
-    --bg: #f0f0f0 !important;
-  }
-  .Tab[data-selected] .lvl-wrapper:after,
-  .Tab[data-active] .lvl-wrapper:after {
-    box-shadow: 0 0 1px rgba(128,128,142,0.9), 0 0 4px rgba(128,128,142,0.5);
-  }
+
+/* Reduce inner padding/margin for sidebar content */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #tabbar,
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] .tree-tabs {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
 }
- 
- 
-/* Reset default styles */
-.Tab:hover,
-.Tab:active,
-.Tab[data-active],
-.Tab[data-active]:active,
-.Tab[data-selected],
-.Tab[data-selected]:hover,
-.Tab[data-selected]:active {
-  background: transparent;
+
+/* Make tabs and favicons smaller */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] .tab {
+  min-width: 24px !important;
+  max-width: 24px !important;
+  padding: 2px !important;
+  margin: 0 !important;
 }
- 
-/* Reapply styles */
- 
-.Tab:hover .lvl-wrapper:after {
-  background-color: var(--tabs-bg-hover);
+
+/* Shrink favicons inside tabs */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] .tab .tab-icon-image {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
 }
- 
-.Tab:active .lvl-wrapper:after,
-.Tab[data-active]:active .lvl-wrapper:after {
-  background-color: var(--tabs-bg-active);
+
+/* Hide tab labels when collapsed */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not(:hover) .tab .tab-label {
+  display: none !important;
 }
- 
-.Tab[data-active] .lvl-wrapper:after {
-  background-color: var(--tabs-activated-bg);
+
+/* Sidebar overlay styling to not resize the page */
+#main-window[sizemode="normal"] #browser {
+  position: relative !important;
 }
- 
- 
-.Tab[data-selected] .lvl-wrapper:after {
-  background-color: var(--tabs-selected-bg);,
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
+  position: absolute !important;
+  z-index: 1000 !important; /* On top of page content */
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  height: 100% !important;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2) !important;
+  background-color: var(--toolbar-bgcolor) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
- 
-/* Resize and reposition favicons */
-.Tab .fav {
-  width: 18px;
-  height: 18px;
-  margin-left: 10px;
+
+/* Hide sidebar splitter */
+#sidebar-splitter {
+  display: none !important;
 }
- 
-.Tab .placeholder > svg {
-  width: 18px;
-  height: 18px;
+
+/* Collapsed state: only show favicons */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not(:hover) {
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  transition: width 0.2s ease-out !important;
 }
- 
-.Tab .fav,
-.Tab .placeholder,
-.Tab .t-box {
-  margin-bottom: -2px;
+
+/* Expanded state: show full sidebar on hover */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover {
+  width: 250px !important;
+  min-width: 250px !important;
+  max-width: 250px !important;
+  transition: width 0.2s ease-out !important;
 }
+

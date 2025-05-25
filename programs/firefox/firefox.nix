@@ -17,11 +17,12 @@ in
       languagePacks = [ "en-US" ];
 
       /* ---- POLICIES ---- */
+      # Check about:policies#documentation for options.
       policies = {
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
         EnableTrackingProtection = {
-          Value = true;
+          Value= true;
           Locked = true;
           Cryptomining = true;
           Fingerprinting = true;
@@ -33,40 +34,57 @@ in
         OverrideFirstRunPage = "";
         OverridePostUpdatePage = "";
         DontCheckDefaultBrowser = true;
-        DisplayBookmarksToolbar = "newtab";
-        DisplayMenuBar = "default-off";
-        SearchBar = "unified";
+        DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
+        DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+        SearchBar = "unified"; # alternative: "separate"
 
         /* ---- EXTENSIONS ---- */
+        # Check about:support for extension/add-on ID strings.
+        # Valid strings for installation_mode are "allowed", "blocked",
+        # "force_installed" and "normal_installed".
         ExtensionSettings = {
-          "*".installation_mode = "blocked";
-
-          # uBlock Origin
+          "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
+          # uBlock Origin:
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "force_installed";
           };
-          # Privacy Badger
+
+          # Privacy Badger:
           "jid1-MnnxcxisBPnSXQ@jetpack" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
             installation_mode = "force_installed";
           };
-          # Dark Reader
+
+          # Dark Reader:
           "addon@darkreader.org" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             installation_mode = "force_installed";
           };
-          # Sidebery
+
+          # Sidebery extension:
           "{3c078156-979c-498b-8990-85f7987dd929}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
             installation_mode = "force_installed";
           };
         };
-
+  
         /* ---- PREFERENCES ---- */
+        # Check about:config for options.
         Preferences = {
+          # Enables loading of custom CSS (userChrome.css & userContent.css)
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = {
+            Value = true;
+            Status = "locked";
+          };
+
+          # UI dark theme
           "ui.systemUsesDarkTheme" = { Value = 1; Status = "locked"; };
+
+          # Content blocking
           "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
+
+          # Disable unwanted features
           "extensions.pocket.enabled" = lock-false;
           "extensions.screenshots.disabled" = lock-true;
           "browser.topsites.contile.enabled" = lock-false;
@@ -84,22 +102,49 @@ in
           "browser.newtabpage.activity-stream.showSponsored" = lock-false;
           "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+
+          # --- PERFORMANCE TWEAKS --- (cus 32GB goes brrrr)
+          # Increase content process limit (more processes, more RAM use, smoother performance with 32GB RAM)
+          "dom.ipc.processCount" = {
+            Value = 16;
+            Status = "locked";
+          };
+
+          # Cache more in memory (less CPU-intensive disk reads)
+          "browser.cache.memory.capacity" = {
+            Value = 131072; # 128 MB
+            Status = "locked";
+          };
+
+          # Decode images on load to reduce CPU usage while scrolling
+          "image.mem.decodeondraw" = {
+            Value = false;
+            Status = "locked";
+          };
+
+          # Enable hardware acceleration if possible (reduces CPU load)
+          "layers.acceleration.force-enabled" = {
+            Value = true;
+            Status = "locked";
+          };
         };
       };
     };
   };
 
-  # 👇 Activation script to copy userChrome.css and sidebery.css
-  system.activationScripts.copyFirefoxStyles = {
-    deps = [];
-    text = ''
-      echo "🔧 Copying Firefox userChrome.css and sidebery.css..."
-      profileDir="/home/relz/.mozilla/firefox/8qst5rkz.default"
-      mkdir -p "$profileDir/chrome"
-      cp "/home/relz/dotfiles/programs/firefox/styling/userChrome.css" "$profileDir/chrome/userChrome.css"
-      cp "/home/relz/dotfiles/programs/firefox/styling/sidebery.css" "$profileDir/chrome/sidebery.css"
-      echo "✅ Styles copied to $profileDir/chrome/"
-    '';
-  };
+  # Activation script snippet: Copy Firefox styling
+  # Copies userChrome.css and sidebery.css into Firefox's profile chrome directory
+  system.activationScripts.copyFirefoxStyles.text = ''
+    echo "🔧 Copying Firefox userChrome.css and sidebery.css..."
+    profile_dir=$(find /home/relz/.mozilla/firefox -maxdepth 1 -type d -name "*.default" | head -n 1)
+    if [ -d "$profile_dir" ]; then
+      mkdir -p "$profile_dir/chrome"
+      cp /home/relz/.dotfiles/programs/firefox/styling/userChrome.css "$profile_dir/chrome/"
+      cp /home/relz/.dotfiles/programs/firefox/styling/sidebery.css "$profile_dir/chrome/"
+      echo "✅ Styles copied to $profile_dir/chrome/"
+    else
+      echo "⚠️ Could not find Firefox profile directory. Skipping style copy."
+    fi
+  '';
 }
 

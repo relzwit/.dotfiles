@@ -38,6 +38,33 @@
   services.tlp.enable = true;
   services.power-profiles-daemon.enable = false;
 
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  services.redshift = {
+    enable = true;
+  }; 
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
+
+  # music player daemon
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/relz/Music";
+  };
+
+
 
 
 
@@ -49,8 +76,6 @@
     "openssl-1.1.1v"
     "python2.7.18.6"
   ];
-
-  #hardware.pulseaudio.support32Bit = true;
 
   nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (builtins.parseDrvName pkg.name).name [ "steam" ]);  
   nix.settings = {
@@ -92,12 +117,6 @@
 
 
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
 #old---:
   # Enable sound with pipewire.
  # hardware.pulseaudio.enable = false;
@@ -124,7 +143,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
 
 
 
@@ -158,20 +176,9 @@
   location.longitude = -85.1031394;
   location.provider = "manual";
 
-  services.redshift = {
-    enable = true;
-  }; 
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        user = "greeter";
-      };
-    };
-  };
-
+  fonts.packages = with pkgs; [
+    hack-font
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -183,7 +190,8 @@
     curl
     git
     gnugrep
-    
+    foot # terminal, i swear its not a fetish
+
 
     # messaging stuffs
     telegram-desktop
@@ -193,6 +201,12 @@
 
     #apps
     strawberry
+
+    mpd
+    ncmpcpp
+    jq
+    mpc
+
     steam
     libreoffice-qt6-fresh
     anki
