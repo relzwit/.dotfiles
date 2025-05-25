@@ -9,11 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
  
-      ./programs/hyprland/hyprland.nix
       ./programs/firefox/firefox.nix
     ];
   # enabling hyprland
-  hyprland.enable = true;
+  programs.hyprland.enable = true;
 
 
 ############

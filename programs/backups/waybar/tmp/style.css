@@ -1,0 +1,343 @@
+/* matugen colors */
+
+/*@import url("../../.config/matugen/colorschemes/colors-waybar.css");*/
+/*@define-color main_color @primary_fixed_dim;*/
+
+* {
+  border: none;
+  border-radius: 18px;
+  /* font-family: "SF Pro Text"; */
+  font-family: "SF Pro Text", "JetBrainsMono Nerd Font";
+  font-size: 14px;
+}
+
+tooltip {
+  background: @background;
+  color: @main_color;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: @main_color;
+}
+
+tooltip label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* window colors */
+
+window#waybar {
+/*  background: alpha(@background, 0.5);*/
+  background: #4F3727;
+  border-radius: 20px;
+  margin-top: 6px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#window {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+  transition: none;
+  background: alpha(@background, 0.1);
+  border-radius: 10px;
+  color: @main_color;
+}
+
+/* workspaces colors */
+
+#workspaces {
+  margin: 2px 0px 2px 1px;
+  border-radius: 20px;
+  transition: none;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+#workspaces button label {
+  color: #ffa500; /*color of the workspace button text*/
+}
+
+#workspaces button {
+  transition: none;
+  background: black; /*background color of the inactive button*/
+  margin-right: 1px;
+}
+
+#workspaces button.persistent {
+  transition: none;
+  color: #aca1cf;
+  background: transparent;
+}
+
+#workspaces button.empty {
+  color: #e29eca;
+  font-size: 2px;
+  transition: none;
+  background: transparent;
+}
+
+#workspaces button.active {
+  transition: none;
+  /*color: @primary_fixed_dim;*/
+  /*background: #ede8d0;*/ /*backgroud color of the active button*/
+  background: #a96b1e;
+
+}
+
+#workspaces button.urgent {
+  transition: none;
+  color: @on_error_container;
+}
+
+/* spotify 
+
+#custom-spotify {
+  margin-top: 6px;
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 18px;
+  font-weight: bold;
+  background-color: @main_color;
+  color: @background;
+}
+*/
+
+/* weather  */
+
+#custom-weather {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 6px;
+  border-radius: 18px;
+  transition: none;
+  font-weight: bold;
+  color: @background;
+  background: @main_color;
+}
+
+/* cava 
+
+#custom-cava {
+  margin-top: 6px;
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: @main_color;
+}
+*/
+
+/* clock */
+
+#clock {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 8px;
+  margin-bottom: 6px;
+  border-radius: 18px;
+  transition: none;
+  font-weight: bold;
+  color: @background;
+  background: @main_color;
+}
+
+/* language */
+
+#language {
+  margin-top: 6px;
+  margin-left: 8px;
+  margin-right: 0px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+  transition: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: @background;
+  background: @main_color;
+}
+
+/* memory */
+
+#memory {
+  margin: 6px 6px 6px 6px;
+  margin-top: 6px;
+  margin-left: 8px;
+  margin-right: 0px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 18px;
+  /* font-size: 14px; */
+  font-weight: bold;
+  transition: none;
+  color: @background;
+  background: @main_color;
+}
+
+/* pulseaudio */
+
+#pulseaudio {
+  margin-top: 6px;
+  margin-left: 8px;
+  margin-right: 0px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: none;
+  color: @background;
+  background: @main_color;
+}
+
+/* bluetooth  */
+
+#bluetooth {
+  margin-top: 5px;
+  margin-left: 8px;
+  margin-right: 0px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: none;
+  color: @background;
+  background: @main_color;
+}
+
+/* battery */
+
+#battery {
+  margin-top: 5px;
+  margin-left: 8px;
+  margin-right: 0px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 18px;
+  transition: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: @background;
+  background: @main_color;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: #161617;
+  background-color: @main_color;
+}
+
+#battery.critical:not(.charging) {
+  background-color: @on_primary;
+  color: @background;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    color: @main_color;
+  }
+}
+
+#network {
+  color: white;
+}
+
+/* tray */
+
+#tray {
+  margin-top: 6px;
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+  transition: none;
+  font-size: 14px;
+  font-weight: bold;
+  /* color: @background; */
+  background: transparent;
+}
+
+/* unused modules */
+
+#audio {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 6px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: none;
+  color: @background;
+  background: @color7;
+}
+
+#custom-notification {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 8px;
+  margin-bottom: 6px;
+  border-radius: 15px;
+  transition: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: @background;
+  background-color: @color14;
+}
+
+#cpu {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 6px;
+  padding-right: 10px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: none;
+  color: #161617;
+  background: #ea83a5;
+}
+
+#custom-launcher {
+  font-size: 18px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 5px;
+  border-radius: 10px;
+  transition: none;
+  color: #92a2d5;
+  background: transparent;
+}
