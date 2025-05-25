@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
- 
+      ./programs/stylix/stylix.nix 
       ./programs/firefox/firefox.nix
     ];
   # enabling hyprland
