@@ -8,12 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
-      ./programs/greetd/greetd.nix
+ 
+      ./programs/hyprland/hyprland.nix
       ./programs/firefox/firefox.nix
     ];
   # enabling hyprland
-  programs.hyprland.enable = true;
+  hyprland.enable = true;
 
 
 ############
