@@ -8,7 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./programs/stylix/stylix.nix 
+      #./programs/stylix/stylix.nix
+      ./programs/audio/audio.nix
       ./programs/firefox/firefox.nix
     ];
   # enabling hyprland
@@ -64,22 +65,22 @@
 #############
 ### Audio ###
 #############
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  # music player daemon
-  services.mpd = {
-    enable = true;
-    musicDirectory = "/home/relz/Music";
-  };
+#  hardware.pulseaudio.enable = false;
+#  security.rtkit.enable = true;
+#
+#  services.pipewire = {
+#    enable = true;
+#    alsa.enable = true;
+#    alsa.support32Bit = true;
+#    pulse.enable = true;
+#    jack.enable = true;
+#  };
+#
+#  # music player daemon
+#  services.mpd = {
+#    enable = true;
+#    musicDirectory = "/home/relz/Music";
+#  };
 
 
 
