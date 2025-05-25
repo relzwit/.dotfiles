@@ -1,25 +1,17 @@
 { config, pkgs, ... }:
 
 let
-  user = "relz";  # change if needed
+  user = "relz";
+  group = "users";
 in {
-  # Install cmus and audio helper packages
+  # Install cmus and related packages
   environment.systemPackages = with pkgs; [
     cmus
     pipewire
-    pipewire-pulse
-    pipewire-alsa
-    wireplumber
-    alsaUtils
+    alsa-utils
   ];
 
-  # Disable standalone PulseAudio
-  hardware.pulseaudio.enable = false;
-
-  # Enable realtimeKit for real-time scheduling support
-  security.rtkit.enable = true;
-
-  # Enable and configure PipeWire with PulseAudio, ALSA, and JACK support
+  # Enable and configure PipeWire with PulseAudio emulation
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -28,13 +20,14 @@ in {
     alsa.support32Bit = true;
   };
 
-  # Enable WirePlumber session manager for PipeWire
-  services.wireplumber.enable = true;
+  # ALSA sound setup
+  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.support32Bit = false;
 
-  # Add user to audio and wheel groups
+  # Add user to audio and wheel groups for permissions
   users.users.${user}.extraGroups = [ "audio" "wheel" ];
 
-  # Deploy a default minimal cmus config for your user on activation
+  # Deploy default cmus config for user 'relz'
   system.activationScripts.cmusConfig = {
     text = ''
       mkdir -p /home/${user}/.config/cmus
@@ -46,12 +39,11 @@ set seek_step = 10
 set replaygain = no
 set volume_step = 5
 EOF
-      chown -R ${user}:${user} /home/${user}/.config/cmus
+      chown -R ${user}:${group} /home/${user}/.config/cmus
     '';
-    deps = [ pkgs.cmus ];
   };
 
-  # Disable mpd service if enabled to avoid conflicts
+  # Disable mpd if enabled elsewhere to avoid conflicts
   systemd.services.mpd.enable = false;
 }
 
