@@ -9,12 +9,11 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #./programs/stylix/stylix.nix
-      ./programs/audio/audio.nix
+      ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
     ];
   # enabling hyprland
   programs.hyprland.enable = true;
-
 
 ############
 ##Services##
@@ -76,11 +75,7 @@
 #    jack.enable = true;
 #  };
 #
-#  # music player daemon
-#  services.mpd = {
-#    enable = true;
-#    musicDirectory = "/home/relz/Music";
-#  };
+
 
 
 
@@ -171,7 +166,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # basics
+# basics
     neovim
     wget
     bash
@@ -191,13 +186,10 @@
     #apps
     strawberry
 
-    mpd
-    ncmpcpp
-    jq
-    mpc
-    alsa-utils
-    pulseaudioFull
-    pavucontrol
+    #cmus 
+    #alsa-utils
+    #pulseaudioFull
+    #pavucontrol
 
     steam
     libreoffice-qt6-fresh
