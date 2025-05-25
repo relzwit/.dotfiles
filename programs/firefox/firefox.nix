@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 let
   lock-false = {
@@ -9,10 +9,6 @@ let
     Value = true;
     Status = "locked";
   };
-
-  # Use absolute paths to the stylesheets
-  userChrome = /home/relz/.dotfiles/programs/firefox/styling/userChrome.css;
-  sidebery = /home/relz/.dotfiles/programs/firefox/styling/sidebery.css;
 in
 {
   programs = {
@@ -41,32 +37,34 @@ in
         DisplayMenuBar = "default-off";
         SearchBar = "unified";
 
+        /* ---- EXTENSIONS ---- */
         ExtensionSettings = {
           "*".installation_mode = "blocked";
 
-	  # UBlock Origin
+          # uBlock Origin
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "force_installed";
           };
-	  # Privacy Badger
+          # Privacy Badger
           "jid1-MnnxcxisBPnSXQ@jetpack" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
             installation_mode = "force_installed";
           };
-	  # Darkreader
+          # Dark Reader
           "addon@darkreader.org" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             installation_mode = "force_installed";
           };
-	  # Sidebery
+          # Sidebery
           "{3c078156-979c-498b-8990-85f7987dd929}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
             installation_mode = "force_installed";
           };
         };
 
-        Preferences = { 
+        /* ---- PREFERENCES ---- */
+        Preferences = {
           "ui.systemUsesDarkTheme" = { Value = 1; Status = "locked"; };
           "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
           "extensions.pocket.enabled" = lock-false;
@@ -96,15 +94,11 @@ in
     deps = [];
     text = ''
       echo "🔧 Copying Firefox userChrome.css and sidebery.css..."
-      profileDir=$(find /home/relz/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -n1)
-      if [ -n "$profileDir" ]; then
-        mkdir -p "$profileDir/chrome"
-        cp "${userChrome}" "$profileDir/chrome/userChrome.css"
-        cp "${sidebery}" "$profileDir/chrome/sidebery.css"
-        echo "✅ Styles copied to $profileDir/chrome/"
-      else
-        echo "⚠️ No Firefox profile found. Please open Firefox once to create it."
-      fi
+      profileDir="/home/relz/.mozilla/firefox/8qst5rkz.default"
+      mkdir -p "$profileDir/chrome"
+      cp "/home/relz/dotfiles/programs/firefox/styling/userChrome.css" "$profileDir/chrome/userChrome.css"
+      cp "/home/relz/dotfiles/programs/firefox/styling/sidebery.css" "$profileDir/chrome/sidebery.css"
+      echo "✅ Styles copied to $profileDir/chrome/"
     '';
   };
 }
