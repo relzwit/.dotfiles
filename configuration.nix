@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #./programs/stylix/stylix.nix
-      ./programs/gammastep/gammastep.nix
       #./programs/nixvim/nixvim.nix
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
@@ -159,6 +158,8 @@
 
   fonts.packages = with pkgs; [
     hack-font
+    arkpandora_ttf
+    corefonts
   ];
 
   # List packages installed in system profile. To search, run:
@@ -173,21 +174,14 @@
     gnugrep
     foot # terminal, i swear its not a fetish
     tree # nice file hierarchy visualizations
-
+    
+    gammastep
 
     # messaging stuffs
     telegram-desktop
     vesktop
     signal-desktop
     thunderbird
-
-    #apps
-    strawberry
-
-    #cmus 
-    #alsa-utils
-    #pulseaudioFull
-    #pavucontrol
 
     steam
     libreoffice-qt6-fresh

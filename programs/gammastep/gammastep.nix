@@ -14,7 +14,7 @@ let
         echo "Turning off gammastep at $(date)"
         pkill gammastep
       fi
-      sleep 300
+      sleep 30
     done
   '';
 in
