@@ -2,7 +2,7 @@
 
 hyprpaper &
 
-/home/relz/.config/hypr/rand-wall.sh &
+/home/relz/.config/hypr/scripts/rand-wall.sh &
 
 # might need to add pkgs.networkmanagerapplet?
 nm-applet --indicator &

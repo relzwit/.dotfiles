@@ -1,10 +1,11 @@
 {
         "layer": "top",
         "position": "top",
+	"margin-top": 0,
         "reload_style_on_change": true,
         "modules-left": ["clock","custom/mullvad","tray"],
         "modules-center": ["hyprland/workspaces"],
-        "modules-right": ["group/expand","custom/weather","battery","custom/power"],
+        "modules-right": ["custom/wallpaper-picker","custom/weather","battery"],
 
 
         "hyprland/workspaces": {
@@ -135,11 +136,10 @@
 	    "exclude": ["nm-applet"]
         },
 	"custom/wallpaper-picker": {
-    "format": "  ",
+    "format": "   ",
     "tooltip": "Pick a Wallpaper",
     "exec": "echo ''",
     "on-click": "~/.config/waybar/scripts/wallpaper_picker.sh"
 }
-
 } 
 
