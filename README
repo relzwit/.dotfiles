@@ -1,4 +1,4 @@
-Quick refresher:
+Quick refresher: (im forgetful ^-^)
 
 # To update packages: (rebuild afterwards to apply updates)
 nix flake update 
