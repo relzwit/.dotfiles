@@ -1,102 +1,117 @@
 @import url('../../.cache/wal/colors-waybar.css');
 
 * {
-    font-size:13px;
+    font-size: 10px;  /* smaller font */
     font-family: "CodeNewRoman Nerd Font Propo";
 }
-window#waybar{
-    all:unset;
+
+window#waybar {
+    all: unset;
+    margin-top: 0px;
+    /* height removed */
 }
+
 .modules-left {
-    padding:5px;
-    margin:2 0 5 2;
-    border-radius:5px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+    padding: 4px 4px;
+    margin: 1.5px 0 4px 1.5px;
+    border-radius: 5px;
+    background: alpha(@background, .6);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .6);
 }
+
 .modules-center {
-    padding:7px;
-    margin:2 0 5 0;
-    border-radius:5px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+    padding: 5px 4px;
+    margin: 1.5px 0 4px 0;
+    border-radius: 5px;
+    background: alpha(@background, .6);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .6);
 }
+
 .modules-right {
-    padding:7px;
-    margin: 2 2 5 0;
-    border-radius:5px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+    padding: 5px 4px;
+    margin: 1.5px 1.5px 4px 0;
+    border-radius: 5px;
+    background: alpha(@background, .6);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .6);
 }
+
 tooltip {
-    background:@background;
+    background: @background;
     color: @color7;
 }
-#clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover,#weather:hover{
+
+#clock:hover, #custom-pacman:hover, #custom-notification:hover,
+#bluetooth:hover, #network:hover, #battery:hover,
+#cpu:hover, #memory:hover, #temperature:hover, #weather:hover {
     transition: all .3s ease;
-    /*color:@color9;*/
-    color:red;
+    color: red;
 }
+
 #custom-notification {
-    padding: 0px 5px;
+    padding: 0 4px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 }
-#clock{
-    padding: 0px 5px;
-    color:@color7;
+
+#clock {
+    padding: 0 4px;
+    color: @color7;
     transition: all .3s ease;
 }
 
 #workspaces {
-    padding: 0px 5px;
+    padding: 0 4px;
 }
+
 #workspaces button {
-    all:unset;
-    padding: 0px 5px;
-    color: alpha(@color9,.4);
-    transition: all .2s ease;
+    all: unset;
+    padding: 0 4px;
+    font-size: 12px;            /* Larger font */
+    font-weight: 700;           /* Bold */
+    color: @color9;             /* Accent color */
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+    transition: all 0.2s ease;
 }
+
 #workspaces button:hover {
-    color:rgba(0,0,0,0);
+    color: #ffd966;             /* Lighter on hover */
     border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+    text-shadow: 0 0 2px rgba(255, 217, 102, 0.7);
     transition: all 1s ease;
 }
+
 #workspaces button.active {
-    color: @color9;
+    color: #ffcc00;             /* Bright color for active workspace */
     border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    text-shadow: 0 0 3px rgba(255, 204, 0, 0.8);
 }
+
 #workspaces button.empty {
-    color: rgba(0,0,0,0);
+    color: rgba(0, 0, 0, 0);
     border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
+    text-shadow: 0 0 1.5px rgba(0, 0, 0, .2);
 }
+
 #workspaces button.empty:hover {
-    color: rgba(0,0,0,0);
+    color: rgba(0, 0, 0, 0);
     border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+    text-shadow: 0 0 1.5px rgba(0, 0, 0, .5);
     transition: all 1s ease;
 }
+
 #workspaces button.empty.active {
     color: @color9;
     border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 }
-#bluetooth{
-    padding: 0px 5px;
+
+#bluetooth, #battery, #group-expand, #custom-expand,
+#custom-colorpicker, #cpu, #memory, #temperature, #weather {
+    padding: 0 4px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 }
 
-#battery{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
-
-
-}
 #battery.charging {
     color: #26A65B;
 }
@@ -113,41 +128,30 @@ tooltip {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-#group-expand{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-}
-#custom-expand{
-    padding: 0px 5px;
-    color:alpha(@foreground,.2);
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .7);
-    transition: all .3s ease; 
-}
-#custom-expand:hover{
-    color:rgba(255,255,255,.2);
-    text-shadow: 0px 0px 2px rgba(255, 255, 255, .5);
-}
-#custom-colorpicker{
-    padding: 0px 5px;
-}
-#cpu,#memory,#temperature,#weather{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-    color:@color7;
 
+#custom-expand {
+    color: alpha(@foreground, .2);
+    text-shadow: 0 0 2px rgba(0, 0, 0, .7);
 }
-#custom-endpoint{
-    color:transparent;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
 
+#custom-expand:hover {
+    color: rgba(255, 255, 255, .2);
+    text-shadow: 0 0 2px rgba(255, 255, 255, .5);
 }
-#custom-blueLight{
-    color:blue;
+
+#custom-endpoint {
+    color: transparent;
+    text-shadow: 0 0 1.5px rgba(0, 0, 0, 1);
 }
+
+#custom-blueLight {
+    color: blue;
+}
+
 #custom-mullvad {
-    padding: 0 10px;
+    padding: 0 8px;
     border-radius: 5px;
-    margin: 2px 4px;
+    margin: 1.5px 3px;
 }
 
 #custom-mullvad.connected {
@@ -166,7 +170,7 @@ tooltip {
 }
 
 #custom-rofi-wifi {
-  color: #a3be8c;
-  padding: 0 10px;
+    color: #a3be8c;
+    padding: 0 8px;
 }
 

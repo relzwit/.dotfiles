@@ -160,11 +160,13 @@
     hack-font
     arkpandora_ttf
     corefonts
+    font-awesome
   ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    lxqt.lxqt-policykit
 # basics
     neovim
     wget
@@ -172,7 +174,6 @@
     curl
     git
     gnugrep
-    foot # terminal, i swear its not a fetish
     tree # nice file hierarchy visualizations
     
     gammastep
@@ -188,21 +189,19 @@
     anki
     bitwarden
     todoist-electron
-    waydroid #for android apps
+    #waydroid #for android apps TODO: get around to this so you can play balatro from your play account
     mpvc #video player
     mpv
     obs-studio
-    prismlauncher
+    prismlauncher # minecraft
     gparted
 
     #programming
     vscode
     zed-editor
 
-
-# utilities and ricing
     nitch #neofetch alt, necessary asf...fite me
-    yt-dlp
+    yt-dlp # youtube video downloader
     libsForQt5.okular # PDF viewer
     
     mullvad
@@ -221,12 +220,13 @@
     btop #hardware monitor
     rofi-wayland #app launcher
     kitty #terminal emulator
-    font-awesome
     brightnessctl
+
     # for capturing screenshots
     wl-clipboard
     grim
     slurp
+
     powertop
     xautolock
     pywal
