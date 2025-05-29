@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./programs/waydroid/waydroid.nix
       #./programs/stylix/stylix.nix
       #./programs/nixvim/nixvim.nix
       ./programs/audio/audio_and_cmus.nix
@@ -55,6 +56,15 @@
 #    };
 #  };
 
+# Swap device
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
+    }
+  ];
+
+  # Specify resume device for hibernation
+  boot.resumeDevice = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
 
 
 
@@ -163,10 +173,16 @@
     font-awesome
   ];
 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    lxqt.lxqt-policykit
+    #cpu testing
+    lm_sensors
+    stress-ng
+    s-tui
+
+lxqt.lxqt-policykit
 # basics
     neovim
     wget
@@ -183,8 +199,14 @@
     vesktop
     signal-desktop
     thunderbird
+    nicotine-plus #soulseek gui
+    qbittorrent-enhanced
 
+    lutris
     steam
+    wineWowPackages.waylandFull
+    gamescope
+
     libreoffice-qt6-fresh
     anki
     bitwarden
