@@ -178,11 +178,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #cpu testing
-    lm_sensors
-    stress-ng
-    s-tui
 
-lxqt.lxqt-policykit
+    lxqt.lxqt-policykit
 # basics
     neovim
     wget
@@ -191,7 +188,8 @@ lxqt.lxqt-policykit
     git
     gnugrep
     tree # nice file hierarchy visualizations
-    
+    parsify # calculator app
+
     gammastep
 
     # messaging stuffs
