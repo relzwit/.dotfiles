@@ -3,9 +3,12 @@
         "position": "top",
 	"margin-top": 0,
         "reload_style_on_change": true,
-        "modules-left": ["clock","custom/mullvad","tray"],
-        "modules-center": ["hyprland/workspaces"],
-        "modules-right": ["custom/wallpaper-picker","custom/weather","battery"],
+        // "modules-left": ["clock","custom/mullvad","tray"],
+        // "modules-center": ["hyprland/workspaces"],
+        // "modules-right": ["custom/wallpaper-picker","custom/weather","battery","custom/power"],
+        "modules-left": ["hyprland/workspaces","custom/mullvad","tray"],
+        "modules-center": ["clock"],
+        "modules-right": ["custom/wallpaper-picker","custom/weather","battery","custom/power"], 
 
 
         "hyprland/workspaces": {
@@ -88,11 +91,11 @@
             "format-plugged": "{capacity}% ",
             "format-alt": "{time} {icon}",
             "format-icons": [
-                "",
-                "",
-                "",
-                "",
-                ""
+                "  ",
+                "  ",
+                "  ",
+                "  ",
+                "  "
                ]
         },
         "custom/expand": {
@@ -140,6 +143,12 @@
     "tooltip": "Pick a Wallpaper",
     "exec": "echo ''",
     "on-click": "~/.config/waybar/scripts/wallpaper_picker.sh"
+},
+"custom/power": {
+    "format": "⏻ ",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/power_menu.sh"
 }
+
 } 
 

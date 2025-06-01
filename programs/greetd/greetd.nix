@@ -1,21 +1,26 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   services.greetd = {
     enable = true;
+
     settings = {
       default_session = {
-        command = ''
-          ${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} -m fill && \
-          ${pkgs.greetd.gtkgreet}/bin/gtkgreet \
-            --layer-shell \
-            --css ${./greeter-style.css} \
-            --command Hyprland
-        '';
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         user = "greeter";
       };
     };
   };
-  
-  stylix.targets.greetd.enable = true;
+
+  users.users.greeter = {
+    isSystemUser = true;
+    createHome = true;
+    home = "/var/lib/greetd";
+    shell = pkgs.bash;
+  };
+
+  users.groups.greeter = {};
+
+  # Disable other display managers to avoid conflict
+  services.displayManager.sddm.enable = lib.mkForce false;
 }

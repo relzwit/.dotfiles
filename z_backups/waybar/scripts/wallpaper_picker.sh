@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
-MONITOR=$(hyprctl monitors | awk '/Monitor/ {print $2; exit}')
+MONITORS=$(hyprctl monitors | awk '/Monitor/ {print $2}')
 
 # Find wallpapers
 mapfile -t WALLPAPERS < <(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | sort)
@@ -27,10 +27,12 @@ if [[ -n "$SELECTED_NAME" ]]; then
         pgrep -x hyprpaper >/dev/null || hyprpaper &
         sleep 0.3
 
-        # Set wallpaper
+        # Set wallpaper on all monitors
         hyprctl hyprpaper unload all
         hyprctl hyprpaper preload "$SELECTED"
-        hyprctl hyprpaper wallpaper "$MONITOR,$SELECTED"
+        for MON in $MONITORS; do
+            hyprctl hyprpaper wallpaper "$MON,$SELECTED"
+        done
 
         # Generate pywal colors
         wal -i "$SELECTED"

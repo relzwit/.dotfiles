@@ -1,38 +1,24 @@
 @import url('../../.cache/wal/colors-waybar.css');
 
 * {
-    font-size: 10px;  /* smaller font */
+    font-size: 15px;  /* smaller font */
     font-family: "CodeNewRoman Nerd Font Propo";
 }
 
 window#waybar {
     all: unset;
     margin-top: 0px;
-    /* height removed */
+    background: @background; /* solid background for the entire bar */
+    box-shadow: none;
+    border-radius: 0;
 }
 
-.modules-left {
-    padding: 4px 4px;
-    margin: 1.5px 0 4px 1.5px;
-    border-radius: 5px;
-    background: alpha(@background, .6);
-    box-shadow: 0 0 2px rgba(0, 0, 0, .6);
-}
-
-.modules-center {
-    padding: 5px 4px;
-    margin: 1.5px 0 4px 0;
-    border-radius: 5px;
-    background: alpha(@background, .6);
-    box-shadow: 0 0 2px rgba(0, 0, 0, .6);
-}
-
-.modules-right {
-    padding: 5px 4px;
-    margin: 1.5px 1.5px 4px 0;
-    border-radius: 5px;
-    background: alpha(@background, .6);
-    box-shadow: 0 0 2px rgba(0, 0, 0, .6);
+.modules-left, .modules-center, .modules-right {
+    padding: 5px 10px;       /* internal spacing */
+    margin: 0;               /* no gaps between sections */
+    border-radius: 0;        /* remove rounded corners */
+    background: @background; /* same solid background for all sections */
+    box-shadow: none;        /* no shadow for a flat look */
 }
 
 tooltip {
@@ -83,6 +69,7 @@ tooltip {
 #workspaces button.active {
     color: #ffcc00;             /* Bright color for active workspace */
     border: none;
+    border-bottom: 2px solid #ffcc00; /* Underline for active workspace */
     text-shadow: 0 0 3px rgba(255, 204, 0, 0.8);
 }
 
@@ -143,34 +130,33 @@ tooltip {
     color: transparent;
     text-shadow: 0 0 1.5px rgba(0, 0, 0, 1);
 }
-
-#custom-blueLight {
-    color: blue;
-}
-
 #custom-mullvad {
-    padding: 0 8px;
-    border-radius: 5px;
+    font-size: 16px;
+    padding: 0 6px;
     margin: 1.5px 3px;
+    border-radius: 0;
+    background: none;
+    transition: color 0.3s ease;
 }
 
+/* VPN Connected: green locked padlock */
 #custom-mullvad.connected {
-    color: #a3be8c;
-    background-color: rgba(163, 190, 140, 0.2);
+    color: #a3be8c; /* subtle green */
 }
 
+/* VPN Disconnected: red unlocked padlock */
 #custom-mullvad.disconnected {
-    color: #bf616a;
-    background-color: rgba(191, 97, 106, 0.2);
+    color: #bf616a; /* subtle red */
 }
 
+/* VPN Error: orange for caution */
 #custom-mullvad.error {
     color: #d08770;
-    background-color: rgba(208, 135, 112, 0.2);
 }
+
+
 
 #custom-rofi-wifi {
     color: #a3be8c;
     padding: 0 8px;
 }
-

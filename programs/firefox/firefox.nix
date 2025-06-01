@@ -135,13 +135,12 @@ in
   # Activation script snippet: Copy Firefox styling
   # Copies userChrome.css and sidebery.css into Firefox's profile chrome directory
   system.activationScripts.copyFirefoxStyles.text = ''
-    echo "🔧 Copying Firefox userChrome.css and sidebery.css..."
     profile_dir=$(find /home/relz/.mozilla/firefox -maxdepth 1 -type d -name "*.default" | head -n 1)
     if [ -d "$profile_dir" ]; then
       mkdir -p "$profile_dir/chrome"
       cp /home/relz/.dotfiles/programs/firefox/styling/userChrome.css "$profile_dir/chrome/"
       cp /home/relz/.dotfiles/programs/firefox/styling/sidebery.css "$profile_dir/chrome/"
-      echo "✅ Styles copied to $profile_dir/chrome/"
+      echo "✅ Firefox styles copied to $profile_dir/chrome/"
     else
       echo "⚠️ Could not find Firefox profile directory. Skipping style copy."
     fi

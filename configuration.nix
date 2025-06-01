@@ -2,18 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./programs/waydroid/waydroid.nix
-      #./programs/stylix/stylix.nix
-      #./programs/nixvim/nixvim.nix
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
+      ./programs/gdm/gdm.nix
     ];
+################
+### Programs ###
+################
+
   # enabling hyprland
   programs.hyprland.enable = true;
 
@@ -55,6 +57,22 @@
 #      };
 #    };
 #  };
+
+  services.gnome.gnome-keyring.enable = true; # allows network manager to store wifi passwords
+  programs.seahorse.enable = true; # GUI to manage secrets
+  programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass"; # forces hyprland to use seahorse not KDE's stuff
+
+#########################
+### File System Stuff ###
+#########################
+# Mounting the tibby ssd
+  fileSystems."/mnt/tby" = {
+    device = "UUID=6ad5996c-7fce-4da4-ac13-18a04aa80f53";
+    fsType = "ext4";
+    options = [ "defaults" ];
+  };
+
+
 
 # Swap device
   swapDevices = [
@@ -170,6 +188,7 @@
     hack-font
     arkpandora_ttf
     corefonts
+    fira-code-nerdfont
     font-awesome
   ];
 
@@ -185,12 +204,15 @@
     wget
     bash
     curl
+    jq
     git
     gnugrep
     tree # nice file hierarchy visualizations
     parsify # calculator app
-
+    ironbar
+    upower
     gammastep
+    zoxide # enables the `z` command in terminal
 
     # messaging stuffs
     telegram-desktop
