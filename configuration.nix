@@ -10,7 +10,8 @@
       ./hardware-configuration.nix
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
-      ./programs/gdm/gdm.nix
+      ./programs/greetd/greetd.nix
+      #./programs/gdm/gdm.nix
     ];
 ################
 ### Programs ###
@@ -22,6 +23,8 @@
 ############
 ##Services##
 ############
+  
+ # services.xserver.displayManager.gdm.enable = true;
 
   # Stuff for mullvad VPN to function
   services.mullvad-vpn.enable = true;
@@ -32,6 +35,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.enable = false;
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable CUPS to print documents.
@@ -48,16 +52,6 @@
     variant = "";
   };
 
-#  services.greetd = {
-#    enable = true;
-#    settings = {
-#      default_session = {
-#        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-#        user = "greeter";
-#      };
-#    };
-#  };
-
   services.gnome.gnome-keyring.enable = true; # allows network manager to store wifi passwords
   programs.seahorse.enable = true; # GUI to manage secrets
   programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass"; # forces hyprland to use seahorse not KDE's stuff
@@ -71,8 +65,6 @@
     fsType = "ext4";
     options = [ "defaults" ];
   };
-
-
 
 # Swap device
   swapDevices = [
@@ -89,6 +81,7 @@
 #############
 ### Audio ###
 #############
+# IMPORTED IN A SEPARATE .NIX FILE
 #  hardware.pulseaudio.enable = false;
 #  security.rtkit.enable = true;
 #
