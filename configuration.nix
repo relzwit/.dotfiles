@@ -11,7 +11,7 @@
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
       ./programs/greetd/greetd.nix
-      #./programs/gdm/gdm.nix
+      ./programs/sddm/sddm.nix
     ];
 ################
 ### Programs ###
@@ -34,8 +34,7 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  #services.displayManager.sddm.enable = false;
+  # services.displayManager.sddm.enable = true; handled inside the sddm.nix file i believe. fingies crossed. 
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable CUPS to print documents.
@@ -265,6 +264,10 @@
     powertop
     xautolock
     pywal
+
+    # sddm dependencies
+    python312Packages.pyqt6
+
   ];
 
   programs.steam = {
