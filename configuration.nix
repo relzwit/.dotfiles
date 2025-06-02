@@ -10,11 +10,11 @@
       ./hardware-configuration.nix
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
-      ./programs/greetd/greetd.nix
+      #./programs/greetd/greetd.nix
       ./programs/sddm/sddm.nix
     ];
 ################
-### Programs ###
+### Programs ##
 ################
 
   # enabling hyprland
@@ -204,7 +204,7 @@
     ironbar
     upower
     gammastep
-    zoxide # enables the `z` command in terminal
+    #zoxide # enables the `z` command in terminal (not setup)
 
     # messaging stuffs
     telegram-desktop
@@ -214,7 +214,6 @@
     nicotine-plus #soulseek gui
     qbittorrent-enhanced
 
-    lutris
     steam
     wineWowPackages.waylandFull
     gamescope
@@ -223,7 +222,6 @@
     anki
     bitwarden
     todoist-electron
-    #waydroid #for android apps TODO: get around to this so you can play balatro from your play account
     mpvc #video player
     mpv
     obs-studio
@@ -248,7 +246,6 @@
     networkmanager
     networkmanagerapplet #magical goodness tysm maintainer
 
-    swww #wallpapers
     dunst #notification manager
     libnotify #dunst dependency
     btop #hardware monitor
@@ -262,7 +259,6 @@
     slurp
 
     powertop
-    xautolock
     pywal
 
     # sddm dependencies
