@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./programs/cleanup_generations.nix
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
       #./programs/greetd/greetd.nix
