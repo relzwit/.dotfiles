@@ -4,11 +4,15 @@
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-
+    # nixos-06cb-009a-fingerprint-sensor = {
+    #   url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     #nixvim.url = "github:nix-community/nixvim/nixos-24.11";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: {
+    #nixos-06cb-009a-fingerprint-sensor,
     nixosConfigurations = {
       #hostname
       nixos = nixpkgs.lib.nixosSystem {

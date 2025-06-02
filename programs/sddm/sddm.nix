@@ -25,6 +25,7 @@ in {
         theme = "sddm-astronaut-theme";
 
         extraPackages = [sddm-astronaut];
+
       };
       autoLogin = {
         enable = false;
@@ -32,4 +33,9 @@ in {
       };
     };
   };
+  # # Enable fingerprint authentication
+  # security.pam.services.sddm.fprintAuth = true;
+
+  # # Enable the fingerprint daemon
+  # services.fprintd.enable = true;
 }

@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, lib, ... }:
-
+#nixos-06cb-009a-fingerprint-sensor,
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -16,15 +16,31 @@
     ];
     
 ################
-### Programs ##
+### Programs ###
 ################
 
   # enabling hyprland
   programs.hyprland.enable = true;
 
-############
-##Services##
-############
+################
+### Security ###
+################
+
+  security.polkit.enable = true; # polkit shit
+
+################
+### Services ###
+################
+
+  # services.fprintd = {
+  #   enable = true;
+  #   tod = {
+  #     enable = true;
+  #     driver = nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+  #       calib-data-file = ./calib-data.bin;
+  #     };
+  #   };
+  # };
 
   # Stuff for mullvad VPN to function
   services.mullvad-vpn.enable = true;
@@ -190,6 +206,7 @@
     hyprpaper
     rofi-wayland #app launcher
     pywal
+    hyprlock
 
 
     # -- Dependencies --
@@ -212,6 +229,7 @@
     mpvc #video player
     mpv # ''
     lxqt.lxqt-policykit
+    libfprint-2-tod1-goodix # for fingerprint reader
     
 
     # -- Utilities --
@@ -228,6 +246,7 @@
     gparted
     yt-dlp # youtube video downloader
     mullvad
+    usbutils
   ];
 
   programs.steam = {
@@ -237,7 +256,8 @@
   };
 
 
-  security.polkit.enable = true;
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

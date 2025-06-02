@@ -12,7 +12,7 @@
     deleted_count=$($NIX_ENV -p /nix/var/nix/profiles/system --delete-generations +14d --quiet | $WC -l)
 
     # Run garbage collection and capture output (don't fail script if it fails)
-    gc_output=$($NIX_COLLECT_GARBAGE -d 2>&1 || true)
+    gc_output=$($NIX_COLLECT_GARBAGE 2>&1 || true)
 
     # Extract freed space (fallback to 0 MB if pattern not found)
     freed_space=$($ECHO "$gc_output" | $GREP -o 'freeing [0-9.]\+[KMGT]' | $GREP -o '[0-9.]\+[KMGT]' || echo "0 MB")
