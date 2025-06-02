@@ -1,49 +1,35 @@
-# ~/.dotfiles/programs/sddm/sddm.nix
-{ config, pkgs, ... }:
-
-{
-  services.displayManager.sddm = {
-       enable = true;
-       wayland = {
-         enable = true;
-       };
-       package = pkgs.kdePackages.sddm;
-       extraPackages = with pkgs; [
-         kdePackages.qtsvg
-         kdePackages.qtmultimedia
-         kdePackages.qtvirtualkeyboard
-         sddm-astronaut
-       ];
-       theme = "sddm-astronaut-theme";
+{pkgs, lib, config, ...}: 
+let sddm-astronaut = pkgs.sddm-astronaut.override {
+    # embeddedTheme = "hyprland_kath";
+    embeddedTheme = "post-apocalyptic_hacker";
+    # embeddedTheme = "black-hole";
+    # embeddedTheme = "cyberpunk";
+    # embeddedTheme = "jake_the_dog";
+    # embeddedTheme = "japanese_aesthetic";
+    # embeddedTheme = "pixel_sakura";
+    # embeddedTheme = "purple_leaves";
   };
-  # #services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.theme = "40k_hacker";
+in {
+  environment.systemPackages = [
+    sddm-astronaut
+  ];
 
-  # # Copy local theme to /etc for SDDM to find it
-  # environment.etc."sddm/themes/40k_hacker".source = ./themes/40k_hacker;
+  services = {
 
-  # # Qt5 dependencies needed for QML themes to render correctly
-  # environment.systemPackages = with pkgs; [
-  #   libsForQt5.qt5.qtquickcontrols2
-  #   libsForQt5.qt5.qtgraphicaleffects
-  #   libsForQt5.qt5.qtsvg
-  # ];
+    displayManager = {
+      sddm = {
+        wayland.enable = true;
+        enable = true;
+        package = pkgs.kdePackages.sddm;
 
-  #  services.displayManager.sddm = {
-  #      enable = true;
-  #      wayland.enable = true;
-  #   #   theme = "sddm-theme-astronaut";
-  #      package = pkgs.kdePackages.sddm;
-  #      extraPackages = [
-  #        pkgs.kdePackages.qt5compat
-  #      ];
-  #    };
+        theme = "sddm-astronaut-theme";
 
-  # # Optional: any SDDM extra settings
-  # services.displayManager.sddm.settings = {
-  #   General = {
-  #     SessionCommand = "/etc/sddm/Xsession";
-  #     InputMethod = "";
-  #   };
-  # };
+        extraPackages = [sddm-astronaut];
+      };
+      autoLogin = {
+        enable = false;
+        user = "relz";
+      };
+    };
+  };
 }

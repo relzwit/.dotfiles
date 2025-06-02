@@ -13,28 +13,7 @@
       #./programs/greetd/greetd.nix
       ./programs/sddm/sddm.nix
     ];
-
-
-
-
-    # services = {
-    #   #xserver.enable = true;
-    #   displayManager = {
-    #     sddm = {
-    #       wayland.enable = true;
-    #       enable = true;
-    #       package = pkgs.kdePackages.sddm;
-    #       theme = "sddm-astronaut-theme";
-    #       extraPackages = [(pkgs.sddm-astronaut.override {
-    #         embeddedTheme = "hyprland_kath";}
-    #         )];
-    #     };
-    #         autoLogin = {
-    #           enable = false;
-    #           user = "relz";
-    #         };
-    #       };
-    #     }; 
+    
 ################
 ### Programs ##
 ################
@@ -45,8 +24,6 @@
 ############
 ##Services##
 ############
-  
- # services.xserver.displayManager.gdm.enable = true;
 
   # Stuff for mullvad VPN to function
   services.mullvad-vpn.enable = true;
@@ -96,28 +73,6 @@
 
   # Specify resume device for hibernation
   boot.resumeDevice = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
-
-
-
-#############
-### Audio ###
-#############
-# IMPORTED IN A SEPARATE .NIX FILE
-#  hardware.pulseaudio.enable = false;
-#  security.rtkit.enable = true;
-#
-#  services.pipewire = {
-#    enable = true;
-#    alsa.enable = true;
-#    alsa.support32Bit = true;
-#    pulse.enable = true;
-#    jack.enable = true;
-#  };
-#
-
-
-
-
 
 
   xdg.portal.enable = true;
@@ -177,12 +132,9 @@
     description = "relz";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kate
+      #kdePackages.kate # dont need this, but kdePackages... is the qt6 version for 25.05
     ];
   };
-
-  # Install firefox.
-  # programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -191,8 +143,6 @@
     enable = true;
   };
 
-# not currently working setting lat/long manually below
-#  location.provider = "geoclue2";
 
   location.latitude = 35.0122173;
   location.longitude = -85.1031394;
@@ -210,11 +160,45 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #cpu testing
-    sddm-astronaut
 
-    lxqt.lxqt-policykit
-# basics
+    # -- Applications --
+    telegram-desktop
+    vesktop
+    signal-desktop
+    thunderbird
+    nicotine-plus #soulseek gui
+    qbittorrent-enhanced
+    steam
+    anki
+    bitwarden
+    todoist-electron
+    obs-studio
+    prismlauncher # minecraft
+    vscode
+    zed-editor
+    libsForQt5.okular # PDF viewer
+
+
+    # -- Ricing --
+    sddm-astronaut
+    ironbar
+    upower
+    gammastep
+    #zoxide # enables the `z` command in terminal (not setup)
+    nitch #neofetch alt, necessary asf...fite me
+    waybar #baaaarrrrrrr
+    hyprpaper
+    rofi-wayland #app launcher
+    pywal
+
+
+    # -- Dependencies --
+    wineWowPackages.waylandFull
+    libreoffice-qt6-fresh
+    gamescope # for running games
+
+
+    # -- Basics --
     neovim
     wget
     bash
@@ -224,69 +208,26 @@
     gnugrep
     tree # nice file hierarchy visualizations
     parsify # calculator app
-    ironbar
-    upower
-    gammastep
-    #zoxide # enables the `z` command in terminal (not setup)
-
-    # messaging stuffs
-    telegram-desktop
-    vesktop
-    signal-desktop
-    thunderbird
-    nicotine-plus #soulseek gui
-    qbittorrent-enhanced
-
-    steam
-    wineWowPackages.waylandFull
-    gamescope
-
-    libreoffice-qt6-fresh
-    anki
-    bitwarden
-    todoist-electron
+    kitty #terminal emulator
     mpvc #video player
-    mpv
-    obs-studio
-    prismlauncher # minecraft
-    gparted
-
-    #programming
-    vscode
-    zed-editor
-
-    nitch #neofetch alt, necessary asf...fite me
-    yt-dlp # youtube video downloader
-    libsForQt5.okular # PDF viewer
+    mpv # ''
+    lxqt.lxqt-policykit
     
-    mullvad
 
-    #waybar shit
-    waybar #baaaarrrrrrr
-    hyprpaper
-
-    #waybar network stuff
+    # -- Utilities --
     networkmanager
     networkmanagerapplet #magical goodness tysm maintainer
-
     dunst #notification manager
     libnotify #dunst dependency
     btop #hardware monitor
-    rofi-wayland #app launcher
-    kitty #terminal emulator
     brightnessctl
-
-    # for capturing screenshots
-    wl-clipboard
-    grim
-    slurp
-
+    wl-clipboard # for capturing screenshots
+    grim # ''
+    slurp # ''
     powertop
-    pywal
-
-    # sddm dependencies
-    python312Packages.pyqt6
-
+    gparted
+    yt-dlp # youtube video downloader
+    mullvad
   ];
 
   programs.steam = {

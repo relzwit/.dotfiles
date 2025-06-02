@@ -2,7 +2,9 @@
   description = "My NixOS flake-based config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+
     #nixvim.url = "github:nix-community/nixvim/nixos-24.11";
   };
 
