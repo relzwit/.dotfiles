@@ -20,7 +20,7 @@ in {
       sddm = {
         wayland.enable = true;
         enable = true;
-        package = pkgs.kdePackages.sddm;
+        #package = pkgs.kdePackages.sddm; #plasma 6 defines this interally i guess
 
         theme = "sddm-astronaut-theme";
 

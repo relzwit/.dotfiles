@@ -2,34 +2,21 @@
 
 {
   system.activationScripts.cleanupGenerations.text = ''
-    #!/usr/bin/env bash
+    NIX_ENV=/run/current-system/sw/bin/nix-env
+    NIX_COLLECT_GARBAGE=/run/current-system/sw/bin/nix-collect-garbage
+    WC=/run/current-system/sw/bin/wc
+    GREP=/run/current-system/sw/bin/grep
+    ECHO=/run/current-system/sw/bin/echo
 
-    # Get the list of system generations older than 14 days
-    old_generations=$(nix-env --list-generations --profile /nix/var/nix/profiles/system --no-name --no-location --date \
-      | awk -v date="$(date -d '14 days ago' +%s)" '$1 < date {print $2}')
+    # Delete old system generations older than 14 days and count how many were deleted
+    deleted_count=$($NIX_ENV -p /nix/var/nix/profiles/system --delete-generations +14d --quiet | $WC -l)
 
-    # Count how many generations we’re going to delete
-    count=$(echo "$old_generations" | wc -l)
+    # Run garbage collection and capture output (don't fail script if it fails)
+    gc_output=$($NIX_COLLECT_GARBAGE -d 2>&1 || true)
 
-    # If there’s nothing to delete, just exit
-    if [ "$count" -eq 0 ]; then
-      echo "🗑️ No old generations to delete."
-      exit 0
-    fi
+    # Extract freed space (fallback to 0 MB if pattern not found)
+    freed_space=$($ECHO "$gc_output" | $GREP -o 'freeing [0-9.]\+[KMGT]' | $GREP -o '[0-9.]\+[KMGT]' || echo "0 MB")
 
-    # Calculate total size of these generations
-    space_freed=$(echo "$old_generations" | while read -r gen; do
-      path="/nix/var/nix/profiles/system-$gen-link"
-      if [ -L "$path" ]; then
-        du -sm "$(readlink -f "$path")" 2>/dev/null | awk '{s+=$1} END {print s}'
-      fi
-    done | awk '{s+=$1} END {print s}')
-
-    # Delete old generations
-    nix-env --delete-generations 14d
-
-    # Print the final message
-    echo "🗑️ Deleted $count generations. ${space_freed:-0} MB freed up."
+    $ECHO "🗑️ Deleted $deleted_count generations older than 14 days. $freed_space freed up. TEST THIS SCRIPT INA  FEW DAY"
   '';
 }
-

@@ -21,8 +21,8 @@ in {
   };
 
   # ALSA sound setup
-  hardware.pulseaudio.enable = false;
-  hardware.pulseaudio.support32Bit = false;
+  services.pulseaudio.enable = false;
+  services.pulseaudio.support32Bit = false;
 
   # Add user to audio and wheel groups for permissions
   users.users.${user}.extraGroups = [ "audio" "wheel" ];

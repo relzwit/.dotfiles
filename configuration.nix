@@ -35,7 +35,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   # services.displayManager.sddm.enable = true; handled inside the sddm.nix file i believe. fingies crossed. 
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true; 
@@ -71,7 +71,6 @@
       device = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
     }
   ];
-
   # Specify resume device for hibernation
   boot.resumeDevice = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
 
@@ -153,7 +152,7 @@
     hack-font
     arkpandora_ttf
     corefonts
-    fira-code-nerdfont
+    nerd-fonts.fira-code
     font-awesome
   ];
 
