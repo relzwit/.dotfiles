@@ -13,6 +13,28 @@
       #./programs/greetd/greetd.nix
       ./programs/sddm/sddm.nix
     ];
+
+
+
+
+    # services = {
+    #   #xserver.enable = true;
+    #   displayManager = {
+    #     sddm = {
+    #       wayland.enable = true;
+    #       enable = true;
+    #       package = pkgs.kdePackages.sddm;
+    #       theme = "sddm-astronaut-theme";
+    #       extraPackages = [(pkgs.sddm-astronaut.override {
+    #         embeddedTheme = "hyprland_kath";}
+    #         )];
+    #     };
+    #         autoLogin = {
+    #           enable = false;
+    #           user = "relz";
+    #         };
+    #       };
+    #     }; 
 ################
 ### Programs ##
 ################
@@ -189,6 +211,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #cpu testing
+    sddm-astronaut
 
     lxqt.lxqt-policykit
 # basics
