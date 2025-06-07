@@ -1,7 +1,7 @@
-/* Hide the sidebar header */
+/* Hide the sidebar header
 #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
   visibility: collapse !important;
-}
+}*/
 
 /* Sidebar and header background and border */
 #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar,
@@ -93,4 +93,3 @@
   max-width: 250px !important;
   transition: width 0.2s ease-out !important;
 }
-

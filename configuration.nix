@@ -193,6 +193,7 @@
     vscode
     zed-editor
     libsForQt5.okular # PDF viewer
+    libreoffice-qt6-fresh
 
 
     # -- Ricing --
@@ -211,7 +212,6 @@
 
     # -- Dependencies --
     wineWowPackages.waylandFull
-    libreoffice-qt6-fresh
     gamescope # for running games
 
 
@@ -228,6 +228,7 @@
     kitty #terminal emulator
     mpvc #video player
     mpv # ''
+    ffmpeg
     lxqt.lxqt-policykit
     libfprint-2-tod1-goodix # for fingerprint reader
     

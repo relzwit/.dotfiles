@@ -1,48 +1,81 @@
-/* Hide Firefox native tabs when using Sidebery (based on title change) */
-/*#main-window[titlepreface*="🦊 "] .tabbrowser-tab {
-  visibility: collapse !important;
-}*/
-#TabsToolbar {
-  visibility: collapse !important;
-}
+/* ----------------------------- */
+/* Sidebery Sidebar Base Styling */
+/* ----------------------------- */
 
-#main-window[titlepreface*="🦊 "] #nav-bar {
-  margin-top: -40px;
-  margin-right: 137px;
-  box-shadow: none !important;
-}
-
-/* Sidebar autohide tweaks for Sidebery */
-#sidebar-box[sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929_"] {
-  --uc-sidebar-width: 48px;
-  --uc-sidebar-hover-width: 250px;
-  --uc-autohide-sidebar-delay: 300ms;
-
-  min-width: var(--uc-sidebar-width) !important;
-  max-width: var(--uc-sidebar-width) !important;
-  transition: max-width 250ms ease-in-out var(--uc-autohide-sidebar-delay),
-              min-width 250ms ease-in-out var(--uc-autohide-sidebar-delay) !important;
+/* Sidebar container pinned at left edge */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
+  position: fixed !important;
+  top: 42px !important;         /* Reduce top by 4px */
+  bottom: 0px !important;      /* Reduce bottom by 4px */
+  left: 0 !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  z-index: 1000 !important;
+  background-color: var(--toolbar-bgcolor) !important;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2) !important;
   overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: width 0.2s ease-out !important;
 }
 
-#sidebar-box[sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929_"]:hover {
-  min-width: var(--uc-sidebar-hover-width) !important;
-  max-width: var(--uc-sidebar-hover-width) !important;
+/* Sidebar expands to 250px on hover, overlapping page content */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover {
+  width: 250px !important;
+  min-width: 250px !important;
+  max-width: 250px !important;
   transition-delay: 0ms !important;
 }
 
-/* Hide header */
-#sidebar-header {
+/* Hide sidebar splitter */
+#sidebar-splitter {
   display: none !important;
 }
 
-/* Sidebar styling for minimal look */
-#sidebar-box {
-  background-color: var(--toolbar-bgcolor) !important;
-  border-inline: 1px solid var(--chrome-content-separator-color) !important;
+/* Hide sidebar header */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
+  visibility: collapse !important;
 }
 
-/* Fix for RTL positioning if sidebar is on the right */
+/* Sidebar and header background and border */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar,
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar-header {
+  background-color: var(--toolbar-bgcolor) !important;
+  border-inline: 1px solid var(--chrome-content-separator-color) !important;
+  border-inline-width: 0px 1px;
+}
+
+/* Reduce inner padding/margin for sidebar content */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #tabbar,
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] .tree-tabs {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+/* Make tabs and favicons smaller */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] .tab {
+  min-width: 24px !important;
+  max-width: 24px !important;
+  padding: 2px !important;
+  margin: 0 !important;
+}
+
+/* Shrink favicons inside tabs */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] .tab .tab-icon-image {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+}
+
+/* Hide tab labels when collapsed */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not(:hover) .tab .tab-label {
+  display: none !important;
+}
+
+/* RTL support */
 #sidebar-box[positionend] {
   direction: rtl;
 }
@@ -56,3 +89,29 @@
   direction: rtl;
 }
 
+/* ----------------------------- */
+/* Shift page content right by 36px to avoid being covered by collapsed sidebar */
+/* ----------------------------- */
+#browser {
+  margin-left: 36px !important;
+}
+
+/* ----------------------------- */
+/* Hide native Firefox tabs when using Sidebery */
+/* ----------------------------- */
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* ----------------------------- */
+/* Additional styling for minimal sidebar look */
+/* ----------------------------- */
+#sidebar-box {
+  background-color: var(--toolbar-bgcolor) !important;
+  border-inline: 1px solid var(--chrome-content-separator-color) !important;
+}
+
+/* Hide header globally */
+#sidebar-header {
+  display: none !important;
+}

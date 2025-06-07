@@ -11,6 +11,19 @@ let
   };
 in
 {
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      libvdpau-va-gl
+    ];
+  };
+
+  environment.variables = {
+    MOZ_ENABLE_WAYLAND = "1";
+  };
+
   programs = {
     firefox = {
       enable = true;
@@ -134,12 +147,13 @@ in
 
   # Activation script snippet: Copy Firefox styling
   # Copies userChrome.css and sidebery.css into Firefox's profile chrome directory
+  #cp /home/relz/.dotfiles/programs/firefox/styling/sidebery.css "$profile_dir/chrome/"
   system.activationScripts.copyFirefoxStyles.text = ''
     profile_dir=$(find /home/relz/.mozilla/firefox -maxdepth 1 -type d -name "*.default" | head -n 1)
     if [ -d "$profile_dir" ]; then
       mkdir -p "$profile_dir/chrome"
       cp /home/relz/.dotfiles/programs/firefox/styling/userChrome.css "$profile_dir/chrome/"
-      cp /home/relz/.dotfiles/programs/firefox/styling/sidebery.css "$profile_dir/chrome/"
+      
       echo "✅ Firefox styles copied to $profile_dir/chrome/"
     else
       echo "⚠️ Could not find Firefox profile directory. Skipping style copy."
