@@ -14,6 +14,7 @@
       ./programs/systemd/systemd.nix
       #./programs/greetd/greetd.nix
       ./programs/sddm/sddm.nix
+      ./programs/suspend-and-hibernate.nix
     ];
     
 ################

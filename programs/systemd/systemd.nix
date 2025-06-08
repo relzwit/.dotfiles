@@ -1,32 +1,33 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  swapUUID = "2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
+in
 {
-  ####### Swap & Hibernate Settings ########
-
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
+      device = "/dev/disk/by-uuid/${swapUUID}";
     }
   ];
 
-  # For hibernate support: resume device
-  boot.resumeDevice = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
-  boot.kernelParams = [
-    "resume=/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9"
-  ];
+  boot = {
+    resumeDevice = "/dev/disk/by-uuid/${swapUUID}";
+    kernelParams = [ "resume=/dev/disk/by-uuid/${swapUUID}" ];
 
-  ####### systemd-logind Power Config ########
+    # REMOVE this line since 'resume' module does not exist
+    # initrd.kernelModules = [ "resume" ];
+  };
 
-  services.logind.extraConfig = ''
-    HandleSuspendKey=suspend
-    HandleHibernateKey=hibernate
-    IdleAction=ignore
+  services.logind = {
+    extraConfig = lib.mkForce ''
+      HandleSuspendKey=suspend
+      HandleHibernateKey=hibernate
+      IdleAction=ignore
+    '';
+  };
+
+  systemd.sleep.extraConfig = ''
     HibernateDelaySec=600
-    HibernateMode=platform
+    HibernateMode=platform shutdown
   '';
-
-  ####### Optional: powertop auto-tune (only if you want it) ########
-
-  # services.powertop.enable = true;
 }
-
