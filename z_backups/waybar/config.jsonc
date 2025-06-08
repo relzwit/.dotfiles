@@ -126,7 +126,7 @@
 		"format": "{}  ",
 		"exec": "~/.config/waybar/scripts/weather.sh",
 		"on-click": "~/.config/waybar/scripts/weather.sh --popup",
-		"interval": 120,
+		"interval": 10,
 		"return-type": "json"
 	},
 

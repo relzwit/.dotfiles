@@ -21,7 +21,7 @@ configuration {
     selected: #228B22;
     active: #8be9fd;
     urgent: #ff5555;
-    font: "JetBrains Mono 10";
+    font: "JetBrains Mono 14";
 }
 
 window {
