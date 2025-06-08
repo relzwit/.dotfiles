@@ -11,6 +11,7 @@
       ./programs/cleanup_generations.nix
       ./programs/audio/audio_and_cmus.nix
       ./programs/firefox/firefox.nix
+      ./programs/systemd/systemd.nix
       #./programs/greetd/greetd.nix
       ./programs/sddm/sddm.nix
     ];
@@ -81,14 +82,14 @@
     options = [ "defaults" ];
   };
 
-# Swap device
-  swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
-    }
-  ];
-  # Specify resume device for hibernation
-  boot.resumeDevice = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
+# # Swap device
+#   swapDevices = [
+#     {
+#       device = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
+#     }
+#   ];
+#   # Specify resume device for hibernation
+#   boot.resumeDevice = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
 
 
   xdg.portal.enable = true;
@@ -157,6 +158,12 @@
 
   hardware.graphics = {
     enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver   # For Intel GPUs (Broadwell+)
+      vaapiIntel           # For older Intel GPUs
+      vaapiVdpau           # VA-API to VDPAU bridge
+      libvdpau-va-gl       # VDPAU over VA-API
+    ];
   };
 
 
@@ -208,6 +215,8 @@
     rofi-wayland #app launcher
     pywal
     hyprlock
+    hypridle
+    geekbench
 
 
     # -- Dependencies --
@@ -254,6 +263,23 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+  };
+
+
+  environment.variables = {
+    # Wayland support for Electron apps (including Vesktop)
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    
+    # Optional GPU acceleration flags for Electron apps
+    NIXOS_OZONE_WL = "1";
+    
+    # For Chromium-based apps
+    LIBVA_DRIVER_NAME = "iHD"; # Use "i965" for older Intel GPUs
+
+    # Optional: Some apps still use X11 fallback; force Wayland
+    GDK_BACKEND = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
   };
 
 
