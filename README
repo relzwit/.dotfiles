@@ -1,9 +1,2 @@
-Quick refresher: (im forgetful ^-^)
-
-# To update packages: (rebuild afterwards to apply updates)
-nix flake update 
-
-# rebuild with current dir flake
-sudo nixos-rebuild switch --flake .
-
+polish this readme up a bit
 
