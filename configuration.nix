@@ -93,20 +93,9 @@
 #   boot.resumeDevice = "/dev/disk/by-uuid/2e378d8c-48ab-4c5d-93f6-ae7578b433b9";
 
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # xdg.portal.enable = true;
+  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  #probably required for steam i think it was
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1v"
-    "python2.7.18.6"
-  ];
-
-  nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (builtins.parseDrvName pkg.name).name [ "steam" ]);  
-  nix.settings = {
-    substituters = ["https://nix-gaming.cachix.org"];
-    trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
-  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -157,20 +146,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver   # For Intel GPUs (Broadwell+)
-      vaapiIntel           # For older Intel GPUs
-      vaapiVdpau           # VA-API to VDPAU bridge
-      libvdpau-va-gl       # VDPAU over VA-API
-    ];
-  };
-
-
-  location.latitude = 35.0122173;
-  location.longitude = -85.1031394;
-  location.provider = "manual";
 
   fonts.packages = with pkgs; [
     hack-font
@@ -192,7 +167,6 @@
     thunderbird
     nicotine-plus #soulseek gui
     qbittorrent-enhanced
-    steam
     anki
     bitwarden
     todoist-electron
@@ -202,6 +176,7 @@
     zed-editor
     libsForQt5.okular # PDF viewer
     libreoffice-qt6-fresh
+    drawio
 
 
     # -- Ricing --
@@ -218,12 +193,6 @@
     hyprlock
     hypridle
     geekbench
-
-
-    # -- Dependencies --
-    wineWowPackages.waylandFull
-    gamescope # for running games
-
 
     # -- Basics --
     neovim
@@ -258,31 +227,21 @@
     yt-dlp # youtube video downloader
     mullvad
     usbutils
+    #mangoHud #for game fps and stuff
   ];
+
+  ### STEAM STUFF
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
   };
 
-
-  environment.variables = {
-    # Wayland support for Electron apps (including Vesktop)
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    
-    # Optional GPU acceleration flags for Electron apps
-    NIXOS_OZONE_WL = "1";
-    
-    # For Chromium-based apps
-    LIBVA_DRIVER_NAME = "iHD"; # Use "i965" for older Intel GPUs
-
-    # Optional: Some apps still use X11 fallback; force Wayland
-    GDK_BACKEND = "wayland";
-    QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland";
-  };
-
+  programs.gamemode.enable = true;
 
 
 

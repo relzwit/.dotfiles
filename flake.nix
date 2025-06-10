@@ -8,10 +8,11 @@
     #   url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     #nixvim.url = "github:nix-community/nixvim/nixos-24.11";
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, ... }: {
     #nixos-06cb-009a-fingerprint-sensor,
     nixosConfigurations = {
       #hostname
@@ -20,6 +21,8 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
+
+          nixos-hardware.nixosModules.lenovo-thinkpad-t480
         ];
       };
     };

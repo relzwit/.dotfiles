@@ -11,14 +11,14 @@ let
   };
 in
 {
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiIntel
-      libvdpau-va-gl
-    ];
-  };
+  # hardware.graphics = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     intel-media-driver
+  #     vaapiIntel
+  #     libvdpau-va-gl
+  #   ];
+  # };
 
   environment.variables = {
     MOZ_ENABLE_WAYLAND = "1";
