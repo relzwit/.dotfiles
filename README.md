@@ -1,6 +1,12 @@
-Here are a couple screenshots of my current system.
-I am running Hyprland on NixOS.
-Waybar for status bar, rofi-wayland for applaunching
+#Info
+
+
+###System:
+_Hyprland
+_NixOS
+_Waybar
+-Rofi-wayland
+_Thinkpad T480
 
 I use pywall for themeing my system. The terminal and waybar are the only things that pull colors from it's cache though. I did not want things changing too much with the wallpapers.
 
