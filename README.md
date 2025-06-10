@@ -3,7 +3,7 @@
 
 ### System:
 - Hyprland
-- NixOS
+- NixOS 25.05
 - Waybar
 - Rofi-wayland
 - Thinkpad T480
