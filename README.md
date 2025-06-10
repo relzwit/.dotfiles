@@ -13,15 +13,17 @@ This is my rofi launcher.
 ![rofi launcher](/assets/rofi.png)
 
 >I do not use home manager. I am happy with my hierarchy at the moment and dont plan on implementing it anytime soon.
-The contents of ~/.config that i care about are periodically backed up to /z_backups.
 
-Any programs that i have configured via nix are contained inside the /programs directory.
+>The contents of ~/.config that i care about are periodically backed up to /z_backups.
+
+>Any programs that i have configured via nix are contained inside the /programs directory.
 
 
 
 I have a near endless todo list that i have set aside for now so that i can achieve some semblance of productivity, but here are some of the main things i need to get around to when i have a surplus of time:
 
 - theme rofi windows with pywal (power menu and wallpicker)
+- i *think* there is a bug with the waybar tray module when mullvad is connected...
 - theme dolphin and/or switch to thunar
 - get the nm-applet css working properly
 - make sure the laptop battery dies gracefully
@@ -33,7 +35,7 @@ I have a near endless todo list that i have set aside for now so that i can achi
 - controller / bluetooth support
 - change pgup/pgdn into media skip/replay binds
 - setup shells for development and cyber
-    -- kali packages shell
-    -- rust shell
-    -- python shell
-    -- flutter shell
+    - kali packages shell
+    - rust shell
+    - python shell
+    - flutter shell
