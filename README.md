@@ -1,0 +1,3 @@
+test1
+![random testing text](/assets/cmus.png)
+test2
