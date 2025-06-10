@@ -1,12 +1,12 @@
-#Info#
+# Info
 
 
-###System:###
-->Hyprland
-->NixOS
-->Waybar
-->Rofi-wayland
-->Thinkpad T480
+### System:
+- Hyprland
+- NixOS
+- Waybar
+- Rofi-wayland
+- Thinkpad T480
 
 I use pywall for themeing my system. The terminal and waybar are the only things that pull colors from it's cache though. I did not want things changing too much with the wallpapers.
 
