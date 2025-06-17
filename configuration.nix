@@ -227,6 +227,7 @@
     yt-dlp # youtube video downloader
     mullvad
     usbutils
+    pavucontrol
     #mangoHud #for game fps and stuff
   ];
 

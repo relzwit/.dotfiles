@@ -64,10 +64,10 @@ in
           };
 
           # Privacy Badger:
-          "jid1-MnnxcxisBPnSXQ@jetpack" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-            installation_mode = "force_installed";
-          };
+          # "jid1-MnnxcxisBPnSXQ@jetpack" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+          #   installation_mode = "force_installed";
+          # };
 
           # Dark Reader:
           "addon@darkreader.org" = {
@@ -80,6 +80,13 @@ in
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
             installation_mode = "force_installed";
           };
+
+          # Youtube feed blocker
+          "{6782d9f6-c579-40d3-be1b-6b42542d7ba1}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/block-youtube-feed/latest.xpi";
+            installation_mode = "force_installed";
+          };
+
         };
   
         /* ---- PREFERENCES ---- */
