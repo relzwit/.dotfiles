@@ -24,6 +24,8 @@
   # enabling hyprland
   programs.hyprland.enable = true;
 
+  programs.direnv.enable = true;
+
 ################
 ### Security ###
 ################
@@ -43,6 +45,10 @@
   #     };
   #   };
   # };
+
+  # Enables automounting with Thunar
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
 
   # Stuff for mullvad VPN to function
   services.mullvad-vpn.enable = true;
@@ -184,7 +190,6 @@
     ironbar
     upower
     gammastep
-    #zoxide # enables the `z` command in terminal (not setup)
     nitch #neofetch alt, necessary asf...fite me
     waybar #baaaarrrrrrr
     hyprpaper
@@ -208,7 +213,7 @@
     mpvc #video player
     mpv # ''
     ffmpeg
-    lxqt.lxqt-policykit
+    lxqt.lxqt-policykit #polkit (ftLoG, dont remove unless replacing)
     libfprint-2-tod1-goodix # for fingerprint reader
     
 
@@ -229,6 +234,19 @@
     usbutils
     pavucontrol
     #mangoHud #for game fps and stuff
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.tumbler
+    gvfs
+
+
+
+
+    # Programming?
+    android-studio
+    direnv
+    #nix-direnv # this shouldnt be working. buts its commented, and direnv is caching stuff so....idk
+    google-chrome # for flutter dev
   ];
 
   ### STEAM STUFF
