@@ -168,7 +168,8 @@
 
     # -- Applications --
     telegram-desktop
-    vesktop
+    #vesktop
+    discord
     signal-desktop
     thunderbird
     nicotine-plus #soulseek gui
