@@ -8,7 +8,7 @@
         // "modules-right": ["custom/wallpaper-picker","custom/weather","battery","custom/power"],
         "modules-left": ["hyprland/workspaces","custom/mullvad","tray"],
         "modules-center": ["clock"],
-        "modules-right": ["custom/wallpaper-picker","custom/weather","battery","custom/power"], 
+        "modules-right": ["custom/coffee","custom/wallpaper-picker","custom/weather","battery","custom/power"], 
 
 
         "hyprland/workspaces": {
@@ -139,16 +139,24 @@
 	    "exclude": ["nm-applet"]
         },
 	"custom/wallpaper-picker": {
-    "format": "   ",
-    "tooltip": "Pick a Wallpaper",
-    "exec": "echo ''",
-    "on-click": "~/.config/waybar/scripts/wallpaper_picker.sh"
-},
-"custom/power": {
-    "format": "⏻ ",
-    "tooltip": false,
-    "on-click": "~/.config/waybar/scripts/power_menu.sh"
-}
+    		"format": "   ",
+    		"tooltip": "Pick a Wallpaper",
+    		"exec": "echo ''",
+    		"on-click": "~/.config/waybar/scripts/wallpaper_picker.sh"
+	},
+	"custom/power": {
+    		"format": "⏻ ",
+    		"tooltip": false,
+    		"on-click": "~/.config/waybar/scripts/power_menu.sh"
+	},
+	"custom/coffee": {
+  		"exec": "~/.config/waybar/scripts/coffee.sh",
+  		"on-click": "~/.config/waybar/scripts/coffee.sh toggle",
+  		"interval": 2,
+  		"return-type": "json",
+  		"format": "{}",             // Shows ☕ icon
+  		"tooltip-format": "{}"      // Uses the `tooltip` from script JSON
+	}
 
 } 
 

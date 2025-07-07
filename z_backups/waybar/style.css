@@ -160,3 +160,12 @@ tooltip {
     color: #a3be8c;
     padding: 0 8px;
 }
+
+#custom-coffee.enabled {
+  color: orange;
+}
+
+#custom-coffee.disabled {
+  color: gray;
+}
+
