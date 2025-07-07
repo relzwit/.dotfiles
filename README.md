@@ -37,7 +37,6 @@ I have a near endless todo list that i have set aside for now so that i can achi
 - implement some sort of fan control software
 - cpu undervolting when off charger
 - fcitx5 setup for typing in chinese. (bind to f11 key?)
-- change the settings button / f9 to run "code ~/.dotfiles"
 - color palette previews inside the wallpicker rofi menu? i think this isnt possible with rofi
 - controller / bluetooth support
 - change pgup/pgdn into media skip/replay binds
