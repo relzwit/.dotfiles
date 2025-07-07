@@ -21,7 +21,7 @@ This is my rofi launcher.
 
 >I do not use home manager. I am happy with my hierarchy at the moment and dont plan on implementing it anytime soon.
 
->The contents of ~/.config that i care about are periodically backed up to /z_backups.
+>The contents of ~/.config that i care about are periodically backed up to /z_backups. (manually)
 
 >Any programs that i have configured via nix are contained inside the /programs directory.
 
