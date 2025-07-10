@@ -159,7 +159,7 @@ in
     profile_dir=$(find /home/relz/.mozilla/firefox -maxdepth 1 -type d -name "*.default" | head -n 1)
     if [ -d "$profile_dir" ]; then
       mkdir -p "$profile_dir/chrome"
-      cp /home/relz/.dotfiles/programs/firefox/styling/userChrome.css "$profile_dir/chrome/"
+      cp /home/relz/.dotfiles/nix_imports/firefox/styling/userChrome.css "$profile_dir/chrome/"
       
       echo "✅ Firefox styles copied to $profile_dir/chrome/"
     else

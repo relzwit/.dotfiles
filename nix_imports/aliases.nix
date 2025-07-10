@@ -2,7 +2,7 @@
 
 {
   environment.shellAliases = {
-    nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/.";
+    nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles";
   };
 }
 

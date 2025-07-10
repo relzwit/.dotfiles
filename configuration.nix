@@ -181,7 +181,7 @@
     obs-studio
     prismlauncher # minecraft
     vscode
-    zed-editor
+    #zed-editor
     libsForQt5.okular # PDF viewer
     libreoffice-qt6-fresh
     drawio
@@ -189,7 +189,7 @@
 
     # -- Ricing --
     sddm-astronaut
-    ironbar
+    #ironbar
     upower
     gammastep
     nitch #neofetch alt, necessary asf...fite me
@@ -236,10 +236,10 @@
     usbutils
     pavucontrol
     #mangoHud #for game fps and stuff
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.tumbler
-    gvfs
+    #xfce.thunar
+    #xfce.thunar-volman
+    #xfce.tumbler
+    #gvfs
 
 
 
