@@ -8,13 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./programs/cleanup_generations.nix
-      ./programs/audio/audio_and_cmus.nix
-      ./programs/firefox/firefox.nix
-      ./programs/systemd/systemd.nix
-      #./programs/greetd/greetd.nix
-      ./programs/sddm/sddm.nix
-      ./programs/suspend-and-hibernate.nix
+      ./nix_imports/cleanup_generations.nix
+      ./nix_imports/audio/audio_and_cmus.nix
+      ./nix_imports/firefox/firefox.nix
+      ./nix_imports/systemd/systemd.nix
+      #./nix_imports/greetd/greetd.nix
+      ./nix_imports/sddm/sddm.nix
+      ./nix_imports/suspend-and-hibernate.nix
+      ./nix_imports/aliases.nix
     ];
     
 ################
@@ -168,7 +169,7 @@
 
     # -- Applications --
     telegram-desktop
-    #vesktop
+    whatsie #whatsapp desktop client
     discord
     signal-desktop
     thunderbird
