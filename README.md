@@ -29,6 +29,7 @@ This is my rofi launcher.
 
 I have a near endless todo list that i have set aside for now so that i can achieve some semblance of productivity, but here are some of the main things i need to get around to when i have a surplus of time:
 
+- ftLoG..implement something to stop all audio playback when BT/3.5mm is disconnected. essential for...reasons
 - theme rofi windows with pywal (power menu and wallpicker)
 - i *think* there is a bug with the waybar tray module when mullvad is connected...
 - theme dolphin and/or switch to thunar

@@ -166,7 +166,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-
     # -- Applications --
     telegram-desktop
     whatsie #whatsapp desktop client
@@ -251,18 +250,18 @@
     google-chrome # for flutter dev
   ];
 
-  ### STEAM STUFF
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  # ### STEAM STUFF
+  # hardware.graphics = {
+  #   enable = true;
+  #   enable32Bit = true;
+  # };
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   gamescopeSession.enable = true;
+  # };
 
-  programs.gamemode.enable = true;
+  # programs.gamemode.enable = true;
 
 
 
