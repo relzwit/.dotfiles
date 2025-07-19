@@ -47,6 +47,8 @@
   #   };
   # };
 
+  services.tailscale.enable = true; # tailscale for easy remote access
+
   # Enables automounting with Thunar
   services.udisks2.enable = true;
   services.gvfs.enable = true;
@@ -63,7 +65,12 @@
   services.desktopManager.plasma6.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true; 
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # power management shit
   services.thermald.enable = true;
@@ -168,6 +175,10 @@
   environment.systemPackages = with pkgs; [
     # -- Applications --
     telegram-desktop
+    #grayjay nrs wont build
+    ktailctl
+    audacity
+    jellyfin-media-player
     whatsie #whatsapp desktop client
     discord
     signal-desktop
