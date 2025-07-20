@@ -181,6 +181,7 @@
     jellyfin-media-player
     whatsie #whatsapp desktop client
     discord
+    vencord
     signal-desktop
     thunderbird
     nicotine-plus #soulseek gui
