@@ -209,14 +209,6 @@
     hypridle
 
     # -- Basics --
-
-    # dolphin stuff?
-    kdePackages.dolphin
-    kdePackages.kio
-    xdg-utils
-    shared-mime-info
-
-
     neovim
     wget
     bash
@@ -262,7 +254,7 @@
     google-chrome # for flutter dev
   ];
 
-    environment.sessionVariables.XDG_DATA_DIRS = lib.mkForce "/run/current-system/sw/share:/etc/profiles/per-user/$USER/share";
+    #environment.sessionVariables.XDG_DATA_DIRS = lib.mkForce "/run/current-system/sw/share:/etc/profiles/per-user/$USER/share";
 
   # ### STEAM STUFF
   # hardware.graphics = {
