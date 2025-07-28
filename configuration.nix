@@ -16,6 +16,7 @@
       ./nix_imports/sddm/sddm.nix
       ./nix_imports/suspend-and-hibernate.nix
       ./nix_imports/aliases.nix
+      ./nix_imports/xdg-menu-fix.nix
     ];
     
 ################
@@ -175,15 +176,12 @@
   environment.systemPackages = with pkgs; [
     # -- Applications --
     telegram-desktop
-    #grayjay nrs wont build
     ktailctl
     audacity
     jellyfin-media-player
     whatsie #whatsapp desktop client
     discord
-    vencord
     signal-desktop
-    thunderbird
     nicotine-plus #soulseek gui
     qbittorrent-enhanced
     anki
@@ -200,7 +198,6 @@
 
     # -- Ricing --
     sddm-astronaut
-    #ironbar
     upower
     gammastep
     nitch #neofetch alt, necessary asf...fite me
@@ -210,9 +207,16 @@
     pywal
     hyprlock
     hypridle
-    geekbench
 
     # -- Basics --
+
+    # dolphin stuff?
+    kdePackages.dolphin
+    kdePackages.kio
+    xdg-utils
+    shared-mime-info
+
+
     neovim
     wget
     bash
@@ -247,10 +251,6 @@
     usbutils
     pavucontrol
     #mangoHud #for game fps and stuff
-    #xfce.thunar
-    #xfce.thunar-volman
-    #xfce.tumbler
-    #gvfs
 
 
 
@@ -261,6 +261,8 @@
     #nix-direnv # this shouldnt be working. buts its commented, and direnv is caching stuff so....idk
     google-chrome # for flutter dev
   ];
+
+    environment.sessionVariables.XDG_DATA_DIRS = lib.mkForce "/run/current-system/sw/share:/etc/profiles/per-user/$USER/share";
 
   # ### STEAM STUFF
   # hardware.graphics = {
