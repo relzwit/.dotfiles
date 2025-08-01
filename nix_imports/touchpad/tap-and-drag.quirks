@@ -1,0 +1,4 @@
+[Disable Tap Drag for Synaptics TM3418-002]
+MatchUdevType=touchpad
+MatchName=Synaptics TM3418-002
+AttrTapDragEnabled=0

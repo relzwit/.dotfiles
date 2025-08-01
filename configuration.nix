@@ -17,7 +17,7 @@
       ./nix_imports/suspend-and-hibernate.nix
       ./nix_imports/aliases.nix
       ./nix_imports/xdg-menu-fix.nix
-      ./nix_imports/trackpad.nix
+      ./nix_imports/touchpad/trackpad.nix
     ];
     
 ################
