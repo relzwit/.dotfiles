@@ -1,4 +1,4 @@
-[Disable Tap Drag for Synaptics TM3418-002]
+[Disable Tap Drag Broad]
 MatchUdevType=touchpad
-MatchName=Synaptics TM3418-002
+MatchName=*
 AttrTapDragEnabled=0
