@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}: 
 let sddm-astronaut = pkgs.sddm-astronaut.override {
     # embeddedTheme = "hyprland_kath";
-    embeddedTheme = "post-apocalyptic_hacker";
+    # embeddedTheme = "post-apocalyptic_hacker";
     # embeddedTheme = "black-hole";
     # embeddedTheme = "cyberpunk";
-    # embeddedTheme = "jake_the_dog";
+    embeddedTheme = "jake_the_dog";
     # embeddedTheme = "japanese_aesthetic";
     # embeddedTheme = "pixel_sakura";
     # embeddedTheme = "purple_leaves";

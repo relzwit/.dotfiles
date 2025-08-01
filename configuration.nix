@@ -24,7 +24,9 @@
 ################
 
   # enabling hyprland
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+  };
 
   programs.direnv.enable = true;
 
@@ -37,16 +39,6 @@
 ################
 ### Services ###
 ################
-
-  # services.fprintd = {
-  #   enable = true;
-  #   tod = {
-  #     enable = true;
-  #     driver = nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-  #       calib-data-file = ./calib-data.bin;
-  #     };
-  #   };
-  # };
 
   services.tailscale.enable = true; # tailscale for easy remote access
 
@@ -175,6 +167,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # -- Applications --
+    zoom-us
+    psst #spotify client in rust
     telegram-desktop
     ktailctl
     audacity
@@ -242,6 +236,7 @@
     mullvad
     usbutils
     pavucontrol
+    libinput
     #mangoHud #for game fps and stuff
 
 
@@ -262,10 +257,10 @@
   #   enable32Bit = true;
   # };
 
-  # programs.steam = {
-  #   enable = true;
-  #   gamescopeSession.enable = true;
-  # };
+  programs.steam = {
+    enable = true;
+    #gamescopeSession.enable = true;
+  };
 
   # programs.gamemode.enable = true;
 
