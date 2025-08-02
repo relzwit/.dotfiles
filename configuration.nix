@@ -18,7 +18,7 @@
       ./nix_imports/aliases.nix
       ./nix_imports/xdg-menu-fix.nix
       #./nix_imports/touchpad/trackpad.nix
-      ./nix_imports/fcitx5.nix
+      #/nix_imports/fcitx5.nix
     ];
     
 ################
@@ -139,6 +139,15 @@
   };
 
 
+  i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -239,6 +248,7 @@
     usbutils
     pavucontrol
     libinput
+
     #mangoHud #for game fps and stuff
 
 

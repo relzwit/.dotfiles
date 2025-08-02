@@ -1,25 +1,23 @@
 { config, pkgs, ... }:
 
-{
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
-  };
-
+let
+  # Explicitly include librime
+  rimeLib = pkgs.librime;
+in {
   environment.systemPackages = with pkgs; [
     fcitx5
-    fcitx5-rime
     fcitx5-gtk
-    fcitx5-qt
     fcitx5-configtool
+    libsForQt5.fcitx5-qt
+    fcitx5-rime
+    catppuccin-fcitx5
   ];
 
-  environment.variables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    INPUT_METHOD = "fcitx";
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = [
+      pkgs.fcitx5-rime
+      rimeLib  # 👈 This ensures librime.so is available to Fcitx5
+    ];
   };
 }
