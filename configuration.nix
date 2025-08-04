@@ -18,13 +18,12 @@
       ./nix_imports/aliases.nix
       ./nix_imports/xdg-menu-fix.nix
       #./nix_imports/touchpad/trackpad.nix
-      #/nix_imports/fcitx5.nix
+      ./nix_imports/fcitx5.nix
     ];
     
 ################
 ### Programs ###
 ################
-
   # enabling hyprland
   programs.hyprland = {
     enable = true;
@@ -41,6 +40,11 @@
 ################
 ### Services ###
 ################
+
+  services.fcitx5 = {
+    enable = true;
+    hyprlandAutoStart = true; # auto start fcitx5 in hyprland
+  };
 
   services.tailscale.enable = true; # tailscale for easy remote access
 
@@ -226,17 +230,17 @@
     kitty #terminal emulator
     mpvc #video player
     mpv # ''
-    ffmpeg
-    lxqt.lxqt-policykit #polkit (ftLoG, dont remove unless replacing)
-    libfprint-2-tod1-goodix # for fingerprint reader
+    ffmpegpolicykit #polkit (ftLoG, dont remove unless replacing)
+    libfprint-2-tod1
+    lxqt.lxqt--goodix # for fingerprint reader
     
 
     # -- Utilities --
     networkmanager
     networkmanagerapplet #magical goodness tysm maintainer
-    dunst #notification manager
-    libnotify #dunst dependency
-    btop #hardware monitor
+    dunst #no #dunst dependency
+    btop #hatification manager
+    libnotifyrdware monitor
     brightnessctl
     wl-clipboard # for capturing screenshots
     grim # ''

@@ -1,23 +1,45 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+
+with lib;
 
 let
-  # Explicitly include librime
-  rimeLib = pkgs.librime;
-in {
-  environment.systemPackages = with pkgs; [
-    fcitx5
-    fcitx5-gtk
-    fcitx5-configtool
-    libsForQt5.fcitx5-qt
-    fcitx5-rime
-    catppuccin-fcitx5
-  ];
+  cfg = config.services.fcitx5;
+in
+{
+  options.services.fcitx5 = {
+    enable = mkEnableOption "Fcitx5 input method with Chewing for Traditional Chinese";
+    hyprlandAutoStart = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to auto-start Fcitx5 in Hyprland";
+    };
+  };
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = [
-      pkgs.fcitx5-rime
-      rimeLib  # 👈 This ensures librime.so is available to Fcitx5
+  config = mkIf cfg.enable {
+    i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-chinese-addons
+        fcitx5-gtk
+        libsForQt5.fcitx5-qt
+        fcitx5-configtool
+        fcitx5-chewing
+      ];
+    };
+
+    environment.variables = {
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
+    };
+
+    environment.systemPackages = with pkgs; [
+      libchewing
     ];
+
+    # For Hyprland users - create a desktop entry that Hyprland can autostart
+    services.xserver.displayManager.sessionCommands = mkIf cfg.hyprlandAutoStart ''
+      ${pkgs.fcitx5}/bin/fcitx5 --replace -d &
+    '';
   };
 }
