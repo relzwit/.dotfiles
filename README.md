@@ -46,3 +46,5 @@ I have a near endless todo list that i have set aside for now so that i can achi
     - rust shell
     - python shell
     - flutter shell
+ 
+*Current daily driver is Fedora/KDE*
